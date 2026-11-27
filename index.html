@@ -247,6 +247,55 @@
       }
       .point-list ul li::before { content: none; }
 
+      /* ---------- Filaria mechanism diagram ---------- */
+      .filaria-figure {
+        margin: 14px 0 6px;
+        background: var(--surface-soft);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 18px 16px 14px;
+      }
+      .filaria-figure figcaption {
+        font-size: 0.82rem;
+        color: var(--ink-soft);
+        text-align: center;
+        margin-top: 12px;
+      }
+      .fsteps { display: flex; flex-direction: column; align-items: stretch; max-width: 620px; margin: 0 auto; }
+      .fstep {
+        display: flex; gap: 14px; align-items: flex-start;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 14px 16px;
+      }
+      .fstep-num {
+        flex-shrink: 0;
+        width: 40px; height: 40px; border-radius: 999px;
+        background: var(--accent); color: #fff;
+        font-family: "Zen Maru Gothic", sans-serif; font-weight: 900; font-size: 1.15rem;
+        display: flex; align-items: center; justify-content: center;
+        margin-top: 2px;
+      }
+      @media (prefers-color-scheme: dark) { .fstep-num { color: #241d10; } }
+      .fstep-body { min-width: 0; }
+      .fstep-body strong {
+        display: block;
+        font-family: "Zen Maru Gothic", sans-serif; font-weight: 700; font-size: 1rem;
+        color: var(--accent-strong); line-height: 1.5; margin-bottom: 2px;
+      }
+      .fstep-body span { font-size: 0.92rem; line-height: 1.7; display: block; }
+      .farrow {
+        text-align: center; color: var(--accent);
+        font-size: 1.3rem; font-weight: 900; line-height: 1.15;
+        padding: 3px 0;
+      }
+      .floop {
+        margin-top: 10px; text-align: center;
+        font-size: 0.9rem; font-weight: 700; color: var(--accent-strong);
+        background: var(--accent-soft); border-radius: 999px; padding: 8px 14px;
+      }
+
       .caution {
         background: var(--pink-soft);
         border: 1px solid var(--line);
@@ -982,6 +1031,75 @@
                 <li>予防薬は月1回が目安で、蚊が出る季節（関東ではおおむね5月〜12月ごろ）を通じて続けます。最後の1回まで欠かさないことが大切です。</li>
                 <li>予防を始める前には血液検査で感染していないか確認します。すでに感染している場合、そのまま予防薬を使うと体調を崩すおそれがあるためです。</li>
                 <li>室内で暮らしていても、蚊は家の中に入ってくるので油断はできません。</li>
+              </ul>
+              <h4>フィラリア感染のメカニズム</h4>
+              <p>
+                フィラリアは、犬から犬へ直接うつるのではなく、<strong>蚊が運び役（媒介）になって広がる</strong>とされます。
+                感染した犬と健康な犬の間を蚊が行き来することで、感染の輪がつながっていきます。その流れを図にまとめました。
+              </p>
+              <figure class="filaria-figure" aria-label="フィラリア感染の流れを示す図解イラスト">
+                <div class="fsteps">
+                  <div class="fstep">
+                    <div class="fstep-num" aria-hidden="true">1</div>
+                    <div class="fstep-body">
+                      <strong>感染した犬の血液の中に幼虫がいる</strong>
+                      <span>心臓などに寄生する成虫が産んだ小さな幼虫（ミクロフィラリア）が、血液の中を流れている状態です。</span>
+                    </div>
+                  </div>
+                  <div class="farrow" aria-hidden="true">↓</div>
+                  <div class="fstep">
+                    <div class="fstep-num" aria-hidden="true">2</div>
+                    <div class="fstep-body">
+                      <strong>蚊がその犬の血を吸い、幼虫も一緒に取り込む</strong>
+                      <span>蚊が感染した犬を刺して吸血するとき、ミクロフィラリアも血液と一緒に蚊の体内へ入ります。</span>
+                    </div>
+                  </div>
+                  <div class="farrow" aria-hidden="true">↓</div>
+                  <div class="fstep">
+                    <div class="fstep-num" aria-hidden="true">3</div>
+                    <div class="fstep-body">
+                      <strong>蚊の体内で約2週間かけて感染力のある幼虫に育つ</strong>
+                      <span>ミクロフィラリアは蚊の体内で脱皮を繰り返し、感染力のある幼虫（第3期幼虫）になります。気温が高い時期ほど進みやすいとされます。</span>
+                    </div>
+                  </div>
+                  <div class="farrow" aria-hidden="true">↓</div>
+                  <div class="fstep">
+                    <div class="fstep-num" aria-hidden="true">4</div>
+                    <div class="fstep-body">
+                      <strong>その蚊が別の犬の血を吸うときに、幼虫が体内へ入る</strong>
+                      <span>育った幼虫は、蚊が別の犬を刺したときに、刺された皮膚のあたりから犬の体内へ入り込むとされます。</span>
+                    </div>
+                  </div>
+                  <div class="farrow" aria-hidden="true">↓</div>
+                  <div class="fstep">
+                    <div class="fstep-num" aria-hidden="true">5</div>
+                    <div class="fstep-body">
+                      <strong>犬の体内で成長しながら移動し、約6〜7か月で心臓や肺の血管へ</strong>
+                      <span>体内に入った幼虫は脱皮・成長しながらゆっくり移動し、半年ほどかけて心臓や肺の血管（肺動脈）にたどり着いて成虫になります。</span>
+                    </div>
+                  </div>
+                  <div class="farrow" aria-hidden="true">↓</div>
+                  <div class="fstep">
+                    <div class="fstep-num" aria-hidden="true">6</div>
+                    <div class="fstep-body">
+                      <strong>成虫が心臓・肺動脈に寄生し、新たな幼虫を産む</strong>
+                      <span>そうめん状で細長い成虫が心臓や肺動脈に寄生し、血液の流れや心臓・肺に負担をかけるとされます。成虫は新たなミクロフィラリアを産み、血液の中へ送り出します。</span>
+                    </div>
+                  </div>
+                  <p class="floop">↺ 6のあとは1に戻ります ― これが「感染の輪」です</p>
+                </div>
+                <figcaption>※イラストはイメージです。感染の流れを分かりやすく示した図解で、実際の大きさや様子とは異なります。</figcaption>
+              </figure>
+              <p><strong>なぜ蚊の季節にだけ起こるのか</strong></p>
+              <ul>
+                <li>蚊の体内で幼虫が育つには、一定の気温と約2週間の期間が必要とされます。そのため、感染が起こるのは蚊が活動し、気温も高い季節が中心になります。逆に、蚊がいない時期に新たな感染が進むことは基本的にないと考えられています。</li>
+                <li>ただし、蚊に刺された時点で感染が成立しても、犬の体内で成虫になるまでには半年以上かかります。その間は幼虫が小さく、血液検査でも見つかりにくい時期があるとされ、症状もほとんど出ません。「刺された直後に調べて陰性だった」ことが、その後の安心につながらないのはこのためです。</li>
+              </ul>
+              <p><strong>予防薬が効く仕組み</strong></p>
+              <ul>
+                <li>予防薬は、成虫を駆除する薬ではなく、<strong>成虫になる前の幼虫の段階で駆除する</strong>仕組みとされます。月1回の投与で、その前の約1か月間に体内へ入った幼虫を、成長が進む前にまとめて駆除していると考えられています。</li>
+                <li>だからこそ、蚊の季節の途中だけでなく、<strong>最後の1回まで欠かさず続ける</strong>ことが大切です。季節の終わりごろに刺されて入った幼虫は、最後の投与で駆除されるためです。途中でやめてしまうと、その分の幼虫が生き残って成虫まで育ってしまうおそれがあります。</li>
+                <li>すでに成虫が寄生している犬に予防を始めると、血液中のミクロフィラリアが一度に駆除される影響などで体調を崩すおそれがあるとされます。そのため、予防を始める前には血液検査で感染していないか確認します（詳しくは上の「フィラリア予防が大切な理由」もご覧ください）。</li>
               </ul>
               <h4>狂犬病予防について詳しく</h4>
               <ul>
