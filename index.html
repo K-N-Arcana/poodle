@@ -172,6 +172,32 @@
         .subnav a { flex: 1 1 calc(50% - 6px); padding: 8px; font-size: 0.9rem; }
       }
 
+      .care-section-title {
+        font-family: "Zen Maru Gothic", sans-serif;
+        font-weight: 900;
+        font-size: 1.25rem;
+        line-height: 1.4;
+        margin: 28px 0 6px;
+        padding-left: 12px;
+        border-left: 5px solid var(--pink);
+      }
+      .care-section-title:first-of-type { margin-top: 6px; }
+      .coat-grid {
+        display: grid; grid-template-columns: 1fr; gap: 12px; margin: 10px 0 12px;
+      }
+      @media (min-width: 680px) { .coat-grid { grid-template-columns: 1fr 1fr; } }
+      .coat-box {
+        background: var(--surface-soft); border: 1px solid var(--line);
+        border-radius: 12px; padding: 14px 16px;
+      }
+      .coat-box-title {
+        font-family: "Zen Maru Gothic", sans-serif; font-weight: 700;
+        font-size: 0.98rem; color: var(--accent-strong); margin: 0 0 6px;
+      }
+      .coat-box p { font-size: 0.93rem; margin: 0 0 8px; }
+      .coat-box p:last-child { margin-bottom: 0; }
+      .coat-box .coat-examples { font-size: 0.88rem; color: var(--ink-soft); }
+
       /* ---------- Sections ---------- */
       section { padding: 34px 0 6px; }
       section[hidden] { display: none; }
@@ -1016,6 +1042,42 @@
       <!-- ===== 2. Care ===== -->
       <section id="care" hidden>
         <h2>お手入れ</h2>
+        <p class="section-sub">犬種を問わず大切な基本のお手入れと、スタンダードプードルならではの巻き毛のお手入れをまとめました。</p>
+
+        <h3 class="care-section-title">犬全般のお手入れ</h3>
+        <p class="section-sub">どの犬種と暮らす場合でも、基本になるお手入れです。頻度や方法は毛質や体質、年齢によって変わるため、目安として参考にし、その子に合わせて調整してください。</p>
+        <div class="card">
+          <h4>シングルコートとダブルコート</h4>
+          <p>ブラッシングの頻度や抜け毛の量は、被毛のタイプによって大きく変わります。まずは、毛の構造の違いを知っておきましょう。</p>
+          <div class="coat-grid">
+            <div class="coat-box">
+              <p class="coat-box-title">ダブルコート（二重の毛）</p>
+              <p>表面の硬めの毛（オーバーコート／上毛）の下に、柔らかく密な下毛（アンダーコート）がある二重構造です。体温調節や皮膚の保護に関わるとされます。春と秋の換毛期には下毛が大量に抜けるため、ブラッシングで抜け毛を取り除くことが大切です。</p>
+              <p class="coat-examples">例：柴犬、ゴールデン・レトリーバー、コーギー、ポメラニアンなど</p>
+              <p>下毛を短く刈りすぎると体温調節や毛質に影響することがあるため、サマーカットは慎重に検討しましょう。</p>
+            </div>
+            <div class="coat-box">
+              <p class="coat-box-title">シングルコート（一重の毛）</p>
+              <p>下毛がほとんどなく、一重の毛でできています。抜け毛は少なめですが、プードルのように伸び続けるタイプは毛玉ができやすく、ブラッシングと定期的なトリミングが必要です。</p>
+              <p class="coat-examples">例：プードル（スタンダード／トイ）、マルチーズ、シーズーなど</p>
+            </div>
+          </div>
+          <p>被毛のタイプによって、ブラッシングの頻度や使う道具、抜け毛の量が変わります。自分の犬がどちらのタイプかを知ることが、お手入れの第一歩になります。</p>
+          <h4>ブラッシング</h4>
+          <p>頻度は毛質によって違い、目安として、長毛種や巻き毛の犬種では毎日〜こまめに、短毛種では週に数回程度とされることが多いです。毛玉や抜け毛の対策になるだけでなく、皮膚の赤みやできものなど、異常に早く気づく機会にもなります。力を入れすぎず、皮膚を傷つけないよう優しくほぐしましょう。</p>
+          <h4>シャンプー</h4>
+          <p>目安として月1〜2回程度とされることが多いお手入れです。人用ではなく犬用のシャンプーを使い、シャンプー成分のすすぎ残しと、毛の根元までの乾かし残しに注意しましょう。洗いすぎは皮膚の乾燥やトラブルの元になることがあるため、汚れが気になるとき以外は頻度を守るのが安心です。</p>
+          <h4>爪切り</h4>
+          <p>爪が伸びすぎると歩き方に影響したり、関節に負担がかかることがあります。爪の中の血管を避けて少しずつ切り、内側にある狼爪（ろうそう）も忘れずにチェックしましょう。嫌がって苦手な子は無理をせず、動物病院やトリミングサロンで頼む方法もあります。</p>
+          <h4>耳掃除</h4>
+          <p>垂れ耳の犬種は耳の中が蒸れやすく、汚れや炎症が起こりやすいとされます。お手入れは見える範囲を柔らかい布やコットンで優しく拭く程度にとどめ、綿棒を奥まで入れないようにしましょう。赤みや強い臭いがある、しきりに痒がる様子が見られるときは、動物病院で相談してください。</p>
+          <h4>歯みがき</h4>
+          <p>歯みがきは歯周病の予防に大切なお手入れです。小さい頃から口のまわりを触られることに少しずつ慣らし、犬用の歯ブラシやガーゼで優しく磨く習慣をつけましょう。すでに歯石がしっかり付いている場合は無理に取ろうとせず、動物病院で相談してください。</p>
+          <h4>足裏と肉球</h4>
+          <p>足裏の毛が伸びるとフローリングなどで滑りやすくなるため、目安として短く整えておくと安心です。散歩のあとは足を拭く習慣をつけると、汚れや異物、傷に気づきやすくなります。肉球の乾燥やひび割れにも注意し、気になるときは様子を見ながらケアや受診を検討してください。</p>
+        </div>
+
+        <h3 class="care-section-title">スタンダードプードルのお手入れ（巻き毛）</h3>
         <p class="section-sub">抜け毛が少ないことで知られますが、その分「毛のお手入れ」は欠かせません。</p>
         <div class="card">
           <h3>伸び続ける巻き毛です</h3>
