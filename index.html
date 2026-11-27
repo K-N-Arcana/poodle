@@ -156,6 +156,22 @@
         .tabs button { flex: 1 1 calc(50% - 6px); padding: 10px 8px; font-size: 0.92rem; }
       }
 
+      /* ---------- Sub navigation (in-tab index) ---------- */
+      .subnav {
+        display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 22px;
+      }
+      .subnav a {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 44px; padding: 8px 16px; border-radius: 999px;
+        border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+        font-size: 0.92rem; font-weight: 500; text-decoration: none;
+      }
+      .subnav a:hover { border-color: var(--accent); color: var(--accent-strong); }
+      @media (max-width: 480px) {
+        .subnav { gap: 6px; }
+        .subnav a { flex: 1 1 calc(50% - 6px); padding: 8px; font-size: 0.9rem; }
+      }
+
       /* ---------- Sections ---------- */
       section { padding: 34px 0 6px; }
       section[hidden] { display: none; }
@@ -187,6 +203,15 @@
         margin-bottom: 18px;
       }
       .card h3:first-child { margin-top: 0; }
+      .card h4 {
+        font-family: "Zen Maru Gothic", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        margin: 18px 0 6px;
+        color: var(--accent-strong);
+      }
+      .card > h4:first-of-type { margin-top: 14px; }
+      p a, li a { color: var(--accent-strong); text-underline-offset: 3px; }
 
       /* spec table */
       .spec {
@@ -651,10 +676,11 @@
       </header>
 
       <nav class="tabs" aria-label="ページ切り替え">
-        <button type="button" class="active" data-page="about" aria-current="page">犬種について</button>
+        <button type="button" class="active" data-page="about" aria-current="page">犬種図鑑</button>
         <button type="button" data-page="personality">性格</button>
         <button type="button" data-page="care">お手入れ</button>
         <button type="button" data-page="life">暮らしのポイント</button>
+        <button type="button" data-page="health">病気と健康</button>
         <button type="button" data-page="dogs">うちの子紹介</button>
         <button type="button" data-page="faq">よくある質問</button>
       </nav>
@@ -678,279 +704,9 @@
             <p>各カードの「なりやすい病気／遺伝病」は、その犬種で一般的に紹介されることが多い傾向をまとめたものです。どの子も必ずなるわけではなく、同じ犬種でもかからない子もたくさんいます。（遺伝性）（先天性）（遺伝的素因）とあるものは、生まれつきの体質や遺伝が関わるとされる病気です。遺伝病の一部には、遺伝子検査などでリスクを調べられる場合があります。気になる症状があるときや、迎える前に詳しく知りたいときは、かかりつけの獣医師やブリーダーに相談してください。ふだんと違う様子に早く気づくためにも、定期的な健康診断が役立ちます。</p>
           </div>
 
-          <div class="gene-mech">
-            <h3>遺伝病のメカニズム ― 遺伝子が病気に関わる仕組み</h3>
-            <p>
-              各カードに出てくる「遺伝性」「遺伝的素因」という言葉は、病気のもとになる体質が、
-              親から子へ受け継がれる遺伝子の情報と関わっている、という意味で使われています。
-              ここでは、その仕組みを図解とともに、一般的な考え方としてまとめます。
-              実際の病気ごとに事情は異なりますので、あくまで「仕組みを知るための読みもの」としてご覧ください。
-            </p>
-
-            <figure class="gene-figure" aria-label="遺伝の基本の流れを示す図解">
-              <p class="fig-title">図A：遺伝の基本の流れ</p>
-              <div class="fsteps">
-                <div class="fstep">
-                  <div class="fstep-num" aria-hidden="true">1</div>
-                  <div class="fstep-body">
-                    <strong>遺伝子（DNA）の情報は、親から子へ受け継がれる</strong>
-                    <span>体の設計図にあたる遺伝子（DNA）は、細胞の中に収められています。子犬は、父親と母親から遺伝子を半分ずつ受け取り、その組み合わせで毛色や体格、そして体質の傾向が決まっていくとされます。</span>
-                  </div>
-                </div>
-                <div class="farrow" aria-hidden="true">↓</div>
-                <div class="fstep">
-                  <div class="fstep-num" aria-hidden="true">2</div>
-                  <div class="fstep-body">
-                    <strong>遺伝子に変化（変異）があると、体の中でうまく働かないことがある</strong>
-                    <span>遺伝子の情報は、体の中で働くタンパク質などを作るための指示書です。その情報に変化（変異）があると、タンパク質がうまく作れなかったり働きが弱くなったりして、特定の臓器や機能に影響し、病気の原因になることがあるとされます。変異があっても何の影響もない場合も多くあります。</span>
-                  </div>
-                </div>
-                <div class="farrow" aria-hidden="true">↓</div>
-                <div class="fstep">
-                  <div class="fstep-num" aria-hidden="true">3</div>
-                  <div class="fstep-body">
-                    <strong>父と母から1つずつ受け取る組み合わせで、子のタイプが決まる</strong>
-                    <span>多くの遺伝子は、父由来と母由来の2つで1組になっています。変異のある遺伝子をいくつ受け取ったかで、「発症するタイプ」「キャリア（変異を1つ持ち、症状は出ないが子へ伝えることがあるタイプ）」「変異を持たないタイプ」に分かれるとされます。</span>
-                  </div>
-                </div>
-              </div>
-              <figcaption>※図はイメージです。遺伝の流れを分かりやすく示した図解で、実際の遺伝子の様子とは異なります。</figcaption>
-            </figure>
-
-            <figure class="gene-figure" aria-label="劣性遺伝の組み合わせを示す表">
-              <p class="fig-title">図B：劣性遺伝の組み合わせ（両親ともキャリアの場合）</p>
-              <div class="punnett-wrap">
-                <table class="punnett">
-                  <caption class="small" style="text-align:left; padding-bottom:8px;">「変異あり」を <b>a</b>、「変異なし」を <b>A</b> と書きます。キャリアの親（Aa）は、子へ A と a のどちらかを半分ずつの確率で伝えます。</caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">父＼母</th>
-                      <th scope="col">母から A（変異なし）</th>
-                      <th scope="col">母から a（変異あり）</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">父から A（変異なし）</th>
-                      <td><b>AA</b>持たないタイプ</td>
-                      <td class="carrier"><b>Aa</b>キャリア</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">父から a（変異あり）</th>
-                      <td class="carrier"><b>Aa</b>キャリア</td>
-                      <td class="affected"><b>aa</b>発症するタイプ</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="punnett-legend" aria-hidden="true">
-                <span class="lg-affected">発症するタイプ 約25％</span>
-                <span class="lg-carrier">キャリア 約50％</span>
-                <span class="lg-clear">持たないタイプ 約25％</span>
-              </div>
-              <figcaption>※図はイメージです。割合は1頭ごとの目安で、実際のきょうだいの頭数や内訳がこの通りになるわけではありません。</figcaption>
-            </figure>
-
-            <h4>遺伝の組み合わせ 全パターン表</h4>
-            <p>
-              図Bで示した「両親ともキャリア」の組み合わせを、親の組み合わせの全パターンに広げた表です。
-              用語はこれまでと同じで、<b>クリア</b>＝変異を持たないタイプ、<b>キャリア</b>＝変異を1つ持つタイプ、
-              <b>発症型</b>＝変異を2つ持つタイプを指します（優性遺伝では、変異を1つ持つ場合も発症型に含めます）。
-              バーの長さと色で、子の割合の目安が比べられます。
-            </p>
-            <div class="punnett-legend" aria-hidden="true">
-              <span class="lg-clear">クリア</span>
-              <span class="lg-carrier">キャリア</span>
-              <span class="lg-affected">発症型</span>
-            </div>
-
-            <p class="combo-type">常染色体劣性遺伝 ― 親の組み合わせ全6パターン</p>
-            <p>
-              犬の遺伝病で多いとされるタイプです。発症型になるのは、変異を父と母の両方から受け取り、
-              2つそろった場合です。キャリア同士の組み合わせ（パターン4）で出てくる割合が、図Bの詳しい表です。
-            </p>
-            <div class="combo-list">
-              <div class="combo">
-                <div class="combo-head">1．クリア <span class="combo-vs">×</span> クリア</div>
-                <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア100パーセント、キャリア0パーセント、発症型0パーセント">
-                  <span class="seg seg-clear" style="width:100%">100％</span>
-                </div>
-                <p class="combo-detail">子の目安 ― クリア <b>100％</b>／キャリア 0％／発症型 0％。両親とも変異を持たないため、子に変異は伝わりません。</p>
-              </div>
-              <div class="combo">
-                <div class="combo-head">2．クリア <span class="combo-vs">×</span> キャリア</div>
-                <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア50パーセント、キャリア50パーセント、発症型0パーセント">
-                  <span class="seg seg-clear" style="width:50%">50％</span>
-                  <span class="seg seg-carrier" style="width:50%">50％</span>
-                </div>
-                <p class="combo-detail">子の目安 ― クリア <b>50％</b>／キャリア <b>50％</b>／発症型 0％。変異が伝わっても1つだけなので、発症型は生まれません。</p>
-              </div>
-              <div class="combo">
-                <div class="combo-head">3．クリア <span class="combo-vs">×</span> 発症型</div>
-                <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア0パーセント、キャリア100パーセント、発症型0パーセント">
-                  <span class="seg seg-carrier" style="width:100%">100％</span>
-                </div>
-                <p class="combo-detail">子の目安 ― クリア 0％／キャリア <b>100％</b>／発症型 0％。子は全員、発症型の親から変異を1つ受け取るためキャリアになります。</p>
-              </div>
-              <div class="combo">
-                <div class="combo-head">4．キャリア <span class="combo-vs">×</span> キャリア</div>
-                <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア25パーセント、キャリア50パーセント、発症型25パーセント">
-                  <span class="seg seg-clear" style="width:25%">25％</span>
-                  <span class="seg seg-carrier" style="width:50%">50％</span>
-                  <span class="seg seg-affected" style="width:25%">25％</span>
-                </div>
-                <p class="combo-detail">子の目安 ― クリア <b>25％</b>／キャリア <b>50％</b>／発症型 <b>25％</b>。図Bはこのパターンの詳しい組み合わせ表です。見た目では分からないキャリア同士から、発症型の子が生まれる可能性がある組み合わせです。</p>
-              </div>
-              <div class="combo">
-                <div class="combo-head">5．キャリア <span class="combo-vs">×</span> 発症型</div>
-                <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア0パーセント、キャリア50パーセント、発症型50パーセント">
-                  <span class="seg seg-carrier" style="width:50%">50％</span>
-                  <span class="seg seg-affected" style="width:50%">50％</span>
-                </div>
-                <p class="combo-detail">子の目安 ― クリア 0％／キャリア <b>50％</b>／発症型 <b>50％</b>。発症型の親からは必ず変異が1つ伝わり、キャリアの親からも伝わるかどうかで分かれます。</p>
-              </div>
-              <div class="combo">
-                <div class="combo-head">6．発症型 <span class="combo-vs">×</span> 発症型</div>
-                <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア0パーセント、キャリア0パーセント、発症型100パーセント">
-                  <span class="seg seg-affected" style="width:100%">100％</span>
-                </div>
-                <p class="combo-detail">子の目安 ― クリア 0％／キャリア 0％／発症型 <b>100％</b>。両親とも変異を2つ持つため、子は全員、変異を2つ受け取ります。</p>
-              </div>
-            </div>
-
-            <p class="combo-type">常染色体優性遺伝 ― 代表パターン</p>
-            <p>
-              優性遺伝では、変異を1つ持つだけでも発症することがあります。そのため発症型には、
-              変異を1つ持つタイプ（ヘテロ）と、2つ持つタイプ（ホモ）があります。
-              病気によっては、ホモでは症状が重くなる場合や、ホモの子が生まれにくい場合もあります。
-            </p>
-            <div class="combo-list">
-              <div class="combo">
-                <div class="combo-head">1．クリア <span class="combo-vs">×</span> 発症型（変異1つ・ヘテロ）</div>
-                <div class="combo-bar" role="img" aria-label="子の割合の目安：発症型約50パーセント、クリア約50パーセント">
-                  <span class="seg seg-clear" style="width:50%">50％</span>
-                  <span class="seg seg-affected" style="width:50%">50％</span>
-                </div>
-                <p class="combo-detail">子の目安 ― 発症型 <b>約50％</b>／クリア <b>約50％</b>。優性遺伝では「キャリア」という区分はなく、変異を受け取った子は発症型として数えます。</p>
-              </div>
-              <div class="combo">
-                <div class="combo-head">2．発症型（変異1つ・ヘテロ）<span class="combo-vs">×</span> 発症型（変異1つ・ヘテロ）</div>
-                <div class="combo-bar" role="img" aria-label="子の割合の目安：発症型約75パーセント、クリア約25パーセント">
-                  <span class="seg seg-clear" style="width:25%">25％</span>
-                  <span class="seg seg-affected" style="width:75%">75％</span>
-                </div>
-                <p class="combo-detail">子の目安 ― 発症型 <b>約75％</b>（内訳：変異2つのホモ約25％・変異1つのヘテロ約50％）／クリア <b>約25％</b>。</p>
-              </div>
-              <div class="combo">
-                <div class="combo-head">3．発症型（変異2つ・ホモ）<span class="combo-vs">×</span> クリア</div>
-                <div class="combo-bar" role="img" aria-label="子の割合の目安：発症型100パーセント">
-                  <span class="seg seg-affected" style="width:100%">100％</span>
-                </div>
-                <p class="combo-detail">子の目安 ― 発症型 <b>100％</b>。子は全員、ホモの親から変異を1つ受け取り、変異1つの発症型（ヘテロ）として生まれます。</p>
-              </div>
-            </div>
-            <p class="small">
-              ※ 優性遺伝では、同じ変異を持っていても、発症する時期や症状の程度に個体差が大きい病気が多くあります。
-              「発症型＝必ず重い症状が出る」とは限らず、変異を持ちながら症状がほとんど出ないまま過ごす子もいるとされます。
-            </p>
-
-            <p class="combo-type">X染色体に伴う劣性遺伝 ― 代表パターン</p>
-            <p>
-              性別を決める染色体のうち、X染色体にある遺伝子の変異が関わるタイプです。
-              オスはX染色体を1本（母から）、メスは2本（父と母から1本ずつ）持ちます。
-              オスはXが1本しかないため、母から変異のあるXを受け取ると、もう一方の正常な遺伝子で補うことができず発症しやすくなります。
-              メスは2本のうち1本に変異があっても、もう1本が働くためキャリアになることが多い、という出方の違いがあります。
-            </p>
-            <div class="combo-list">
-              <div class="combo">
-                <div class="combo-head">1．母がキャリア <span class="combo-vs">×</span> 父がクリア</div>
-                <p class="combo-detail">子の目安 ― オスの子：約50％が発症型、約50％がクリア／メスの子：約50％がキャリア、約50％がクリア。発症型が出るとすればオスの子です。</p>
-              </div>
-              <div class="combo">
-                <div class="combo-head">2．母がクリア <span class="combo-vs">×</span> 父が発症型</div>
-                <p class="combo-detail">子の目安 ― メスの子：全員キャリア（父から変異のあるXを受け取るため）／オスの子：全員クリア（父からはY染色体を受け取り、Xは母から受け取るため）。</p>
-              </div>
-              <div class="combo">
-                <div class="combo-head">3．母がキャリア <span class="combo-vs">×</span> 父が発症型</div>
-                <p class="combo-detail">子の目安 ― オスの子：約50％が発症型、約50％がクリア／メスの子：約50％が発症型、約50％がキャリア。この組み合わせでは、メスの子にも発症型が出る可能性があります。</p>
-              </div>
-            </div>
-
-            <p>
-              ※ ここまでの割合はすべて、子1頭ごとに考えたときの確率の目安です。
-              実際のきょうだいの頭数や内訳がその通りになるとは限らず、たとえばキャリア同士の子が、たまたま全員クリアということもあります。
-            </p>
-            <p>
-              ※ また、「発症型」とされる子でも、病気によっては発症しない、あるいは軽く済む場合があります。
-              変異があっても症状として現れる割合（浸透率）は病気ごとに違い、発症する年齢にも幅があります。
-              割合はあくまで目安として読み、気になることがあれば、かかりつけの獣医師や遺伝子検査の相談先で確認してください。
-            </p>
-
-            <h4>遺伝の仕組みの基本</h4>
-            <p>
-              子は、父親と母親から遺伝子を半分ずつ受け継ぎます。同じ遺伝子でも少しずつ違うバージョンがあり、
-              その組み合わせが、その子の体質の土台になると考えられています。
-              遺伝病と呼ばれるものは、この受け継ぎ方（遺伝形式）によって大きくいくつかのタイプに分けられます。
-            </p>
-
-            <h4>常染色体劣性遺伝 ― 変異が2つそろったときに発症するタイプ</h4>
-            <p>
-              変異のある遺伝子を父と母の両方から受け取り、2つそろったときに発症するタイプです。
-              変異を1つだけ持つ「キャリア」は、もう一方の正常な遺伝子が働くため、症状が出ないことが多いとされます。
-              キャリア同士の両親からは、図Bのように発症するタイプの子が生まれる可能性があります。
-              犬の遺伝病として知られるものの多くはこのタイプとされ、たとえば進行性網膜萎縮症の一部や、
-              ラブラドールの運動誘発性虚脱などが挙げられます。見た目ではキャリアかどうか分からない点が、このタイプの特徴です。
-            </p>
-
-            <h4>常染色体優性遺伝 ― 変異が1つでも発症することがあるタイプ</h4>
-            <p>
-              変異のある遺伝子を1つ受け取るだけでも発症することがあるタイプです。
-              変異を持つ親からは、目安として約半数の子に変異が伝わるとされます。
-              ただし、同じ変異を持っていても、発症する時期や症状の程度には個体差が大きいことがあり、
-              「変異がある＝すぐに重い症状が出る」とは限らないとされます。
-            </p>
-
-            <h4>性染色体（X染色体）に伴う遺伝 ― オスとメスで出方が違うタイプ</h4>
-            <p>
-              性別を決める染色体のうち、X染色体にある遺伝子の変異が関わるタイプです。
-              オスはX染色体を1つ、メスは2つ持つため、同じ変異でもオスとメスで発症のしかたが違うことがあります。
-              たとえばオスでは変異が1つでも発症しやすく、メスではキャリアになる、といった出方です。
-              腎臓の遺伝病の一部（サモエド遺伝性糸球体症など）が、このタイプとして知られています。
-            </p>
-
-            <h4>多因子遺伝 ― 遺伝だけでは決まらないタイプ</h4>
-            <p>
-              1つの遺伝子ではなく、複数の遺伝子の組み合わせに、食事・体重・運動量・成長のしかたといった
-              環境の要素が重なって出るタイプです。股関節形成不全、がん、アレルギー性の皮膚の病気などが、
-              この多因子の関わりが考えられる例として挙げられます。
-              「遺伝的素因がある」と言われる病気の多くはこのタイプで、素因があっても必ず発症するわけではなく、
-              体重管理や暮らし方によってリスクを下げられる場合もあるとされます。
-            </p>
-
-            <h4>なぜ犬種ごとに遺伝病が違うのか</h4>
-            <p>
-              純血種は、限られた数の祖先から、望ましい特徴を選んで作られてきた歴史があります。
-              人気のあるオスに子孫が集中することもあり、その過程で、特定の遺伝子の変異がその犬種の中に広がりやすくなるとされます。
-              また、短い鼻や長い胴といった見た目の特徴を選んできた歴史と、病気の素因が近い遺伝子の場所で一緒に受け継がれることもあると考えられています。
-              そのため、「どの犬種に、どの遺伝病が多いか」が犬種ごとに違ってくるのです。
-            </p>
-
-            <h4>遺伝子検査で分かること・分からないこと</h4>
-            <ul>
-              <li>病気によっては、DNA検査（遺伝子検査）で、その病気について「発症するタイプ／キャリア／持たない」を調べられる場合があります。唾液や血液などから調べる検査が一般的です。</li>
-              <li>ただし、検査できる病気は分かっているものの一部に限られます。ある病気で「持たない（クリア）」と出ても、ほかの病気や、まだ知られていない変異まで保証するものではありません。</li>
-              <li>多因子遺伝の病気は、1つの遺伝子検査だけではリスクを言い切れないことが多いとされます。</li>
-              <li>検査の結果の読み方や、その子に合わせた健康管理は、かかりつけの獣医師に相談しながら進めるのが安心です。</li>
-            </ul>
-
-            <h4>キャリアは「病気」ではありません</h4>
-            <p>
-              大切なのは、キャリアは変異を1つ持っているだけで、劣性遺伝の病気では症状が出ないことが多い、という点です。
-              キャリアであること自体は、その子の健康上の問題を意味しません。
-              また、発症するタイプとされる子でも、発症の年齢や程度には個体差があり、環境が関わることも多いとされます。
-              遺伝の情報は「その子を避けるため」ではなく、「その子に合った健康管理を早めに考えるため」に役立てるものと考えられています。
-            </p>
-          </div>
+          <p class="small" style="margin-top:14px;">
+            遺伝病の仕組みについては、<a href="#" data-goto="health">「病気と健康」タブ</a>で、図解とあわせて詳しく紹介しています。
+          </p>
 
           <div class="breed-nav" role="group" aria-label="犬種のサイズで絞り込み">
             <button type="button" class="active" data-filter="all">すべて</button>
@@ -1397,104 +1153,6 @@
           </ul>
         </div>
 
-        <div class="card">
-          <h3>動物病院との付き合い方</h3>
-          <ul class="point-list">
-            <li><strong>かかりつけ医</strong> ― 元気なうちにかかりつけの動物病院を見つけておくと安心です。年1回の健康診断で、体重や歯、耳の状態などをチェックしてもらうのがおすすめです。</li>
-            <li><strong>定期的にやること</strong> ― 狂犬病予防接種（年1回、法律で義務づけられています）、混合ワクチン、フィラリア予防（蚊が出る季節に月1回が目安）、ノミ・ダニ予防など。時期や回数は病院で相談を。
-              <h4>フィラリア予防が大切な理由</h4>
-              <ul>
-                <li>フィラリア（犬糸状虫）は、蚊に刺されることで感染する寄生虫です。体内に入った幼虫が成長しながら心臓や肺の血管へ移り、そうめん状の細長い成虫になります。</li>
-                <li>感染しても初期はほとんど症状が出ません。気づかないうちに心臓や肺に負担がかかり、咳が出る、散歩で疲れやすい、痩せてくる、といった症状が進んでから見つかることが多いとされます。重くなると命に関わります。</li>
-                <li>治療は長期間かかり、犬の体への負担も大きく、手術が必要になることもあります。「かかってから治す」より「予防する」ほうが、犬にも飼い主にも負担がはるかに小さい病気です。</li>
-                <li>予防薬は月1回が目安で、蚊が出る季節（関東ではおおむね5月〜12月ごろ）を通じて続けます。最後の1回まで欠かさないことが大切です。</li>
-                <li>予防を始める前には血液検査で感染していないか確認します。すでに感染している場合、そのまま予防薬を使うと体調を崩すおそれがあるためです。</li>
-                <li>室内で暮らしていても、蚊は家の中に入ってくるので油断はできません。</li>
-              </ul>
-              <h4>フィラリア感染のメカニズム</h4>
-              <p>
-                フィラリアは、犬から犬へ直接うつるのではなく、<strong>蚊が運び役（媒介）になって広がる</strong>とされます。
-                感染した犬と健康な犬の間を蚊が行き来することで、感染の輪がつながっていきます。その流れを図にまとめました。
-              </p>
-              <figure class="filaria-figure" aria-label="フィラリア感染の流れを示す図解イラスト">
-                <div class="fsteps">
-                  <div class="fstep">
-                    <div class="fstep-num" aria-hidden="true">1</div>
-                    <div class="fstep-body">
-                      <strong>感染した犬の血液の中に幼虫がいる</strong>
-                      <span>心臓などに寄生する成虫が産んだ小さな幼虫（ミクロフィラリア）が、血液の中を流れている状態です。</span>
-                    </div>
-                  </div>
-                  <div class="farrow" aria-hidden="true">↓</div>
-                  <div class="fstep">
-                    <div class="fstep-num" aria-hidden="true">2</div>
-                    <div class="fstep-body">
-                      <strong>蚊がその犬の血を吸い、幼虫も一緒に取り込む</strong>
-                      <span>蚊が感染した犬を刺して吸血するとき、ミクロフィラリアも血液と一緒に蚊の体内へ入ります。</span>
-                    </div>
-                  </div>
-                  <div class="farrow" aria-hidden="true">↓</div>
-                  <div class="fstep">
-                    <div class="fstep-num" aria-hidden="true">3</div>
-                    <div class="fstep-body">
-                      <strong>蚊の体内で約2週間かけて感染力のある幼虫に育つ</strong>
-                      <span>ミクロフィラリアは蚊の体内で脱皮を繰り返し、感染力のある幼虫（第3期幼虫）になります。気温が高い時期ほど進みやすいとされます。</span>
-                    </div>
-                  </div>
-                  <div class="farrow" aria-hidden="true">↓</div>
-                  <div class="fstep">
-                    <div class="fstep-num" aria-hidden="true">4</div>
-                    <div class="fstep-body">
-                      <strong>その蚊が別の犬の血を吸うときに、幼虫が体内へ入る</strong>
-                      <span>育った幼虫は、蚊が別の犬を刺したときに、刺された皮膚のあたりから犬の体内へ入り込むとされます。</span>
-                    </div>
-                  </div>
-                  <div class="farrow" aria-hidden="true">↓</div>
-                  <div class="fstep">
-                    <div class="fstep-num" aria-hidden="true">5</div>
-                    <div class="fstep-body">
-                      <strong>犬の体内で成長しながら移動し、約6〜7か月で心臓や肺の血管へ</strong>
-                      <span>体内に入った幼虫は脱皮・成長しながらゆっくり移動し、半年ほどかけて心臓や肺の血管（肺動脈）にたどり着いて成虫になります。</span>
-                    </div>
-                  </div>
-                  <div class="farrow" aria-hidden="true">↓</div>
-                  <div class="fstep">
-                    <div class="fstep-num" aria-hidden="true">6</div>
-                    <div class="fstep-body">
-                      <strong>成虫が心臓・肺動脈に寄生し、新たな幼虫を産む</strong>
-                      <span>そうめん状で細長い成虫が心臓や肺動脈に寄生し、血液の流れや心臓・肺に負担をかけるとされます。成虫は新たなミクロフィラリアを産み、血液の中へ送り出します。</span>
-                    </div>
-                  </div>
-                  <p class="floop">↺ 6のあとは1に戻ります ― これが「感染の輪」です</p>
-                </div>
-                <figcaption>※イラストはイメージです。感染の流れを分かりやすく示した図解で、実際の大きさや様子とは異なります。</figcaption>
-              </figure>
-              <p><strong>なぜ蚊の季節にだけ起こるのか</strong></p>
-              <ul>
-                <li>蚊の体内で幼虫が育つには、一定の気温と約2週間の期間が必要とされます。そのため、感染が起こるのは蚊が活動し、気温も高い季節が中心になります。逆に、蚊がいない時期に新たな感染が進むことは基本的にないと考えられています。</li>
-                <li>ただし、蚊に刺された時点で感染が成立しても、犬の体内で成虫になるまでには半年以上かかります。その間は幼虫が小さく、血液検査でも見つかりにくい時期があるとされ、症状もほとんど出ません。「刺された直後に調べて陰性だった」ことが、その後の安心につながらないのはこのためです。</li>
-              </ul>
-              <p><strong>予防薬が効く仕組み</strong></p>
-              <ul>
-                <li>予防薬は、成虫を駆除する薬ではなく、<strong>成虫になる前の幼虫の段階で駆除する</strong>仕組みとされます。月1回の投与で、その前の約1か月間に体内へ入った幼虫を、成長が進む前にまとめて駆除していると考えられています。</li>
-                <li>だからこそ、蚊の季節の途中だけでなく、<strong>最後の1回まで欠かさず続ける</strong>ことが大切です。季節の終わりごろに刺されて入った幼虫は、最後の投与で駆除されるためです。途中でやめてしまうと、その分の幼虫が生き残って成虫まで育ってしまうおそれがあります。</li>
-                <li>すでに成虫が寄生している犬に予防を始めると、血液中のミクロフィラリアが一度に駆除される影響などで体調を崩すおそれがあるとされます。そのため、予防を始める前には血液検査で感染していないか確認します（詳しくは上の「フィラリア予防が大切な理由」もご覧ください）。</li>
-              </ul>
-              <h4>狂犬病予防について詳しく</h4>
-              <ul>
-                <li>狂犬病は、犬だけでなく人も感染するウイルス性の病気です。発症すると有効な治療法がなく、ほぼ命を落とすとされる、とても怖い病気です。</li>
-                <li>日本では1957年以降、国内での発生はありません。これは狂犬病予防法にもとづく犬の登録と予防注射が続いてきた成果とされます。ただし世界では今も多くの国で発生していて、海外からウイルスが入ってくる可能性はゼロではありません。</li>
-                <li>法律で、生後91日以上の犬には、生涯1回の登録と、年1回の狂犬病予防注射が義務づけられています。注射を受けると「注射済票」が交付されます。</li>
-                <li>注射の時期は、毎年4月〜6月の集合注射の時期が目安です。動物病院では時期を問わず受けられることが多いので、かかりつけで相談を。</li>
-                <li>予防注射は、自分の犬を守るためだけでなく、人への感染を防ぐための社会全体の仕組みでもあります。</li>
-                <li>体調が悪いときや治療中のときは、獣医師に相談して時期を調整できます。</li>
-              </ul>
-            </li>
-            <li><strong>こんなときは早めに受診を</strong> ― 食欲がない日が続く、吐く・下痢が続く、歩き方がおかしい、呼吸が荒い、お腹が張っている、いつもと様子が違う、など。とくにお腹の張りや落ち着きのなさは、大型犬では緊急の対応が必要になることもあるとされます。迷ったら病院に電話で相談を。</li>
-            <li><strong>大型犬ならではの備え</strong> ― 体重20kgを超えるので、具合が悪いときに抱えて運ぶのは大変です。車での通院手段や、夜間・休日に対応してくれる病院を事前に確認しておきましょう。</li>
-          </ul>
-        </div>
-
         <div class="caution">
           <h3>気をつけたいとされる健康面</h3>
           <p>
@@ -1510,7 +1168,404 @@
         </div>
       </section>
 
-      <!-- ===== 5. Dogs ===== -->
+      <!-- ===== 5. Health ===== -->
+      <section id="health" hidden>
+        <h2>病気と健康</h2>
+        <p class="section-sub">遺伝病の仕組み、フィラリア予防、動物病院との付き合い方など、健康に関わる情報をまとめました。</p>
+        <nav class="subnav" aria-label="病気と健康の目次">
+          <a href="#health-gene">遺伝病の仕組み</a>
+          <a href="#health-breeds">犬種ごとの病気</a>
+          <a href="#health-filaria">フィラリア</a>
+          <a href="#health-vet">病院と予防接種</a>
+        </nav>
+
+        <div class="gene-mech" id="health-gene">
+          <h3>遺伝病のメカニズム ― 遺伝子が病気に関わる仕組み</h3>
+          <p>
+            各カードに出てくる「遺伝性」「遺伝的素因」という言葉は、病気のもとになる体質が、
+            親から子へ受け継がれる遺伝子の情報と関わっている、という意味で使われています。
+            ここでは、その仕組みを図解とともに、一般的な考え方としてまとめます。
+            実際の病気ごとに事情は異なりますので、あくまで「仕組みを知るための読みもの」としてご覧ください。
+          </p>
+
+          <figure class="gene-figure" aria-label="遺伝の基本の流れを示す図解">
+            <p class="fig-title">図A：遺伝の基本の流れ</p>
+            <div class="fsteps">
+              <div class="fstep">
+                <div class="fstep-num" aria-hidden="true">1</div>
+                <div class="fstep-body">
+                  <strong>遺伝子（DNA）の情報は、親から子へ受け継がれる</strong>
+                  <span>体の設計図にあたる遺伝子（DNA）は、細胞の中に収められています。子犬は、父親と母親から遺伝子を半分ずつ受け取り、その組み合わせで毛色や体格、そして体質の傾向が決まっていくとされます。</span>
+                </div>
+              </div>
+              <div class="farrow" aria-hidden="true">↓</div>
+              <div class="fstep">
+                <div class="fstep-num" aria-hidden="true">2</div>
+                <div class="fstep-body">
+                  <strong>遺伝子に変化（変異）があると、体の中でうまく働かないことがある</strong>
+                  <span>遺伝子の情報は、体の中で働くタンパク質などを作るための指示書です。その情報に変化（変異）があると、タンパク質がうまく作れなかったり働きが弱くなったりして、特定の臓器や機能に影響し、病気の原因になることがあるとされます。変異があっても何の影響もない場合も多くあります。</span>
+                </div>
+              </div>
+              <div class="farrow" aria-hidden="true">↓</div>
+              <div class="fstep">
+                <div class="fstep-num" aria-hidden="true">3</div>
+                <div class="fstep-body">
+                  <strong>父と母から1つずつ受け取る組み合わせで、子のタイプが決まる</strong>
+                  <span>多くの遺伝子は、父由来と母由来の2つで1組になっています。変異のある遺伝子をいくつ受け取ったかで、「発症するタイプ」「キャリア（変異を1つ持ち、症状は出ないが子へ伝えることがあるタイプ）」「変異を持たないタイプ」に分かれるとされます。</span>
+                </div>
+              </div>
+            </div>
+            <figcaption>※図はイメージです。遺伝の流れを分かりやすく示した図解で、実際の遺伝子の様子とは異なります。</figcaption>
+          </figure>
+
+          <figure class="gene-figure" aria-label="劣性遺伝の組み合わせを示す表">
+            <p class="fig-title">図B：劣性遺伝の組み合わせ（両親ともキャリアの場合）</p>
+            <div class="punnett-wrap">
+              <table class="punnett">
+                <caption class="small" style="text-align:left; padding-bottom:8px;">「変異あり」を <b>a</b>、「変異なし」を <b>A</b> と書きます。キャリアの親（Aa）は、子へ A と a のどちらかを半分ずつの確率で伝えます。</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">父＼母</th>
+                    <th scope="col">母から A（変異なし）</th>
+                    <th scope="col">母から a（変異あり）</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">父から A（変異なし）</th>
+                    <td><b>AA</b>持たないタイプ</td>
+                    <td class="carrier"><b>Aa</b>キャリア</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">父から a（変異あり）</th>
+                    <td class="carrier"><b>Aa</b>キャリア</td>
+                    <td class="affected"><b>aa</b>発症するタイプ</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="punnett-legend" aria-hidden="true">
+              <span class="lg-affected">発症するタイプ 約25％</span>
+              <span class="lg-carrier">キャリア 約50％</span>
+              <span class="lg-clear">持たないタイプ 約25％</span>
+            </div>
+            <figcaption>※図はイメージです。割合は1頭ごとの目安で、実際のきょうだいの頭数や内訳がこの通りになるわけではありません。</figcaption>
+          </figure>
+
+          <h4>遺伝の組み合わせ 全パターン表</h4>
+          <p>
+            図Bで示した「両親ともキャリア」の組み合わせを、親の組み合わせの全パターンに広げた表です。
+            用語はこれまでと同じで、<b>クリア</b>＝変異を持たないタイプ、<b>キャリア</b>＝変異を1つ持つタイプ、
+            <b>発症型</b>＝変異を2つ持つタイプを指します（優性遺伝では、変異を1つ持つ場合も発症型に含めます）。
+            バーの長さと色で、子の割合の目安が比べられます。
+          </p>
+          <div class="punnett-legend" aria-hidden="true">
+            <span class="lg-clear">クリア</span>
+            <span class="lg-carrier">キャリア</span>
+            <span class="lg-affected">発症型</span>
+          </div>
+
+          <p class="combo-type">常染色体劣性遺伝 ― 親の組み合わせ全6パターン</p>
+          <p>
+            犬の遺伝病で多いとされるタイプです。発症型になるのは、変異を父と母の両方から受け取り、
+            2つそろった場合です。キャリア同士の組み合わせ（パターン4）で出てくる割合が、図Bの詳しい表です。
+          </p>
+          <div class="combo-list">
+            <div class="combo">
+              <div class="combo-head">1．クリア <span class="combo-vs">×</span> クリア</div>
+              <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア100パーセント、キャリア0パーセント、発症型0パーセント">
+                <span class="seg seg-clear" style="width:100%">100％</span>
+              </div>
+              <p class="combo-detail">子の目安 ― クリア <b>100％</b>／キャリア 0％／発症型 0％。両親とも変異を持たないため、子に変異は伝わりません。</p>
+            </div>
+            <div class="combo">
+              <div class="combo-head">2．クリア <span class="combo-vs">×</span> キャリア</div>
+              <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア50パーセント、キャリア50パーセント、発症型0パーセント">
+                <span class="seg seg-clear" style="width:50%">50％</span>
+                <span class="seg seg-carrier" style="width:50%">50％</span>
+              </div>
+              <p class="combo-detail">子の目安 ― クリア <b>50％</b>／キャリア <b>50％</b>／発症型 0％。変異が伝わっても1つだけなので、発症型は生まれません。</p>
+            </div>
+            <div class="combo">
+              <div class="combo-head">3．クリア <span class="combo-vs">×</span> 発症型</div>
+              <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア0パーセント、キャリア100パーセント、発症型0パーセント">
+                <span class="seg seg-carrier" style="width:100%">100％</span>
+              </div>
+              <p class="combo-detail">子の目安 ― クリア 0％／キャリア <b>100％</b>／発症型 0％。子は全員、発症型の親から変異を1つ受け取るためキャリアになります。</p>
+            </div>
+            <div class="combo">
+              <div class="combo-head">4．キャリア <span class="combo-vs">×</span> キャリア</div>
+              <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア25パーセント、キャリア50パーセント、発症型25パーセント">
+                <span class="seg seg-clear" style="width:25%">25％</span>
+                <span class="seg seg-carrier" style="width:50%">50％</span>
+                <span class="seg seg-affected" style="width:25%">25％</span>
+              </div>
+              <p class="combo-detail">子の目安 ― クリア <b>25％</b>／キャリア <b>50％</b>／発症型 <b>25％</b>。図Bはこのパターンの詳しい組み合わせ表です。見た目では分からないキャリア同士から、発症型の子が生まれる可能性がある組み合わせです。</p>
+            </div>
+            <div class="combo">
+              <div class="combo-head">5．キャリア <span class="combo-vs">×</span> 発症型</div>
+              <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア0パーセント、キャリア50パーセント、発症型50パーセント">
+                <span class="seg seg-carrier" style="width:50%">50％</span>
+                <span class="seg seg-affected" style="width:50%">50％</span>
+              </div>
+              <p class="combo-detail">子の目安 ― クリア 0％／キャリア <b>50％</b>／発症型 <b>50％</b>。発症型の親からは必ず変異が1つ伝わり、キャリアの親からも伝わるかどうかで分かれます。</p>
+            </div>
+            <div class="combo">
+              <div class="combo-head">6．発症型 <span class="combo-vs">×</span> 発症型</div>
+              <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア0パーセント、キャリア0パーセント、発症型100パーセント">
+                <span class="seg seg-affected" style="width:100%">100％</span>
+              </div>
+              <p class="combo-detail">子の目安 ― クリア 0％／キャリア 0％／発症型 <b>100％</b>。両親とも変異を2つ持つため、子は全員、変異を2つ受け取ります。</p>
+            </div>
+          </div>
+
+          <p class="combo-type">常染色体優性遺伝 ― 代表パターン</p>
+          <p>
+            優性遺伝では、変異を1つ持つだけでも発症することがあります。そのため発症型には、
+            変異を1つ持つタイプ（ヘテロ）と、2つ持つタイプ（ホモ）があります。
+            病気によっては、ホモでは症状が重くなる場合や、ホモの子が生まれにくい場合もあります。
+          </p>
+          <div class="combo-list">
+            <div class="combo">
+              <div class="combo-head">1．クリア <span class="combo-vs">×</span> 発症型（変異1つ・ヘテロ）</div>
+              <div class="combo-bar" role="img" aria-label="子の割合の目安：発症型約50パーセント、クリア約50パーセント">
+                <span class="seg seg-clear" style="width:50%">50％</span>
+                <span class="seg seg-affected" style="width:50%">50％</span>
+              </div>
+              <p class="combo-detail">子の目安 ― 発症型 <b>約50％</b>／クリア <b>約50％</b>。優性遺伝では「キャリア」という区分はなく、変異を受け取った子は発症型として数えます。</p>
+            </div>
+            <div class="combo">
+              <div class="combo-head">2．発症型（変異1つ・ヘテロ）<span class="combo-vs">×</span> 発症型（変異1つ・ヘテロ）</div>
+              <div class="combo-bar" role="img" aria-label="子の割合の目安：発症型約75パーセント、クリア約25パーセント">
+                <span class="seg seg-clear" style="width:25%">25％</span>
+                <span class="seg seg-affected" style="width:75%">75％</span>
+              </div>
+              <p class="combo-detail">子の目安 ― 発症型 <b>約75％</b>（内訳：変異2つのホモ約25％・変異1つのヘテロ約50％）／クリア <b>約25％</b>。</p>
+            </div>
+            <div class="combo">
+              <div class="combo-head">3．発症型（変異2つ・ホモ）<span class="combo-vs">×</span> クリア</div>
+              <div class="combo-bar" role="img" aria-label="子の割合の目安：発症型100パーセント">
+                <span class="seg seg-affected" style="width:100%">100％</span>
+              </div>
+              <p class="combo-detail">子の目安 ― 発症型 <b>100％</b>。子は全員、ホモの親から変異を1つ受け取り、変異1つの発症型（ヘテロ）として生まれます。</p>
+            </div>
+          </div>
+          <p class="small">
+            ※ 優性遺伝では、同じ変異を持っていても、発症する時期や症状の程度に個体差が大きい病気が多くあります。
+            「発症型＝必ず重い症状が出る」とは限らず、変異を持ちながら症状がほとんど出ないまま過ごす子もいるとされます。
+          </p>
+
+          <p class="combo-type">X染色体に伴う劣性遺伝 ― 代表パターン</p>
+          <p>
+            性別を決める染色体のうち、X染色体にある遺伝子の変異が関わるタイプです。
+            オスはX染色体を1本（母から）、メスは2本（父と母から1本ずつ）持ちます。
+            オスはXが1本しかないため、母から変異のあるXを受け取ると、もう一方の正常な遺伝子で補うことができず発症しやすくなります。
+            メスは2本のうち1本に変異があっても、もう1本が働くためキャリアになることが多い、という出方の違いがあります。
+          </p>
+          <div class="combo-list">
+            <div class="combo">
+              <div class="combo-head">1．母がキャリア <span class="combo-vs">×</span> 父がクリア</div>
+              <p class="combo-detail">子の目安 ― オスの子：約50％が発症型、約50％がクリア／メスの子：約50％がキャリア、約50％がクリア。発症型が出るとすればオスの子です。</p>
+            </div>
+            <div class="combo">
+              <div class="combo-head">2．母がクリア <span class="combo-vs">×</span> 父が発症型</div>
+              <p class="combo-detail">子の目安 ― メスの子：全員キャリア（父から変異のあるXを受け取るため）／オスの子：全員クリア（父からはY染色体を受け取り、Xは母から受け取るため）。</p>
+            </div>
+            <div class="combo">
+              <div class="combo-head">3．母がキャリア <span class="combo-vs">×</span> 父が発症型</div>
+              <p class="combo-detail">子の目安 ― オスの子：約50％が発症型、約50％がクリア／メスの子：約50％が発症型、約50％がキャリア。この組み合わせでは、メスの子にも発症型が出る可能性があります。</p>
+            </div>
+          </div>
+
+          <p>
+            ※ ここまでの割合はすべて、子1頭ごとに考えたときの確率の目安です。
+            実際のきょうだいの頭数や内訳がその通りになるとは限らず、たとえばキャリア同士の子が、たまたま全員クリアということもあります。
+          </p>
+          <p>
+            ※ また、「発症型」とされる子でも、病気によっては発症しない、あるいは軽く済む場合があります。
+            変異があっても症状として現れる割合（浸透率）は病気ごとに違い、発症する年齢にも幅があります。
+            割合はあくまで目安として読み、気になることがあれば、かかりつけの獣医師や遺伝子検査の相談先で確認してください。
+          </p>
+
+          <h4>遺伝の仕組みの基本</h4>
+          <p>
+            子は、父親と母親から遺伝子を半分ずつ受け継ぎます。同じ遺伝子でも少しずつ違うバージョンがあり、
+            その組み合わせが、その子の体質の土台になると考えられています。
+            遺伝病と呼ばれるものは、この受け継ぎ方（遺伝形式）によって大きくいくつかのタイプに分けられます。
+          </p>
+
+          <h4>常染色体劣性遺伝 ― 変異が2つそろったときに発症するタイプ</h4>
+          <p>
+            変異のある遺伝子を父と母の両方から受け取り、2つそろったときに発症するタイプです。
+            変異を1つだけ持つ「キャリア」は、もう一方の正常な遺伝子が働くため、症状が出ないことが多いとされます。
+            キャリア同士の両親からは、図Bのように発症するタイプの子が生まれる可能性があります。
+            犬の遺伝病として知られるものの多くはこのタイプとされ、たとえば進行性網膜萎縮症の一部や、
+            ラブラドールの運動誘発性虚脱などが挙げられます。見た目ではキャリアかどうか分からない点が、このタイプの特徴です。
+          </p>
+
+          <h4>常染色体優性遺伝 ― 変異が1つでも発症することがあるタイプ</h4>
+          <p>
+            変異のある遺伝子を1つ受け取るだけでも発症することがあるタイプです。
+            変異を持つ親からは、目安として約半数の子に変異が伝わるとされます。
+            ただし、同じ変異を持っていても、発症する時期や症状の程度には個体差が大きいことがあり、
+            「変異がある＝すぐに重い症状が出る」とは限らないとされます。
+          </p>
+
+          <h4>性染色体（X染色体）に伴う遺伝 ― オスとメスで出方が違うタイプ</h4>
+          <p>
+            性別を決める染色体のうち、X染色体にある遺伝子の変異が関わるタイプです。
+            オスはX染色体を1つ、メスは2つ持つため、同じ変異でもオスとメスで発症のしかたが違うことがあります。
+            たとえばオスでは変異が1つでも発症しやすく、メスではキャリアになる、といった出方です。
+            腎臓の遺伝病の一部（サモエド遺伝性糸球体症など）が、このタイプとして知られています。
+          </p>
+
+          <h4>多因子遺伝 ― 遺伝だけでは決まらないタイプ</h4>
+          <p>
+            1つの遺伝子ではなく、複数の遺伝子の組み合わせに、食事・体重・運動量・成長のしかたといった
+            環境の要素が重なって出るタイプです。股関節形成不全、がん、アレルギー性の皮膚の病気などが、
+            この多因子の関わりが考えられる例として挙げられます。
+            「遺伝的素因がある」と言われる病気の多くはこのタイプで、素因があっても必ず発症するわけではなく、
+            体重管理や暮らし方によってリスクを下げられる場合もあるとされます。
+          </p>
+
+          <h4>なぜ犬種ごとに遺伝病が違うのか</h4>
+          <p>
+            純血種は、限られた数の祖先から、望ましい特徴を選んで作られてきた歴史があります。
+            人気のあるオスに子孫が集中することもあり、その過程で、特定の遺伝子の変異がその犬種の中に広がりやすくなるとされます。
+            また、短い鼻や長い胴といった見た目の特徴を選んできた歴史と、病気の素因が近い遺伝子の場所で一緒に受け継がれることもあると考えられています。
+            そのため、「どの犬種に、どの遺伝病が多いか」が犬種ごとに違ってくるのです。
+          </p>
+
+          <h4>遺伝子検査で分かること・分からないこと</h4>
+          <ul>
+            <li>病気によっては、DNA検査（遺伝子検査）で、その病気について「発症するタイプ／キャリア／持たない」を調べられる場合があります。唾液や血液などから調べる検査が一般的です。</li>
+            <li>ただし、検査できる病気は分かっているものの一部に限られます。ある病気で「持たない（クリア）」と出ても、ほかの病気や、まだ知られていない変異まで保証するものではありません。</li>
+            <li>多因子遺伝の病気は、1つの遺伝子検査だけではリスクを言い切れないことが多いとされます。</li>
+            <li>検査の結果の読み方や、その子に合わせた健康管理は、かかりつけの獣医師に相談しながら進めるのが安心です。</li>
+          </ul>
+
+          <h4>キャリアは「病気」ではありません</h4>
+          <p>
+            大切なのは、キャリアは変異を1つ持っているだけで、劣性遺伝の病気では症状が出ないことが多い、という点です。
+            キャリアであること自体は、その子の健康上の問題を意味しません。
+            また、発症するタイプとされる子でも、発症の年齢や程度には個体差があり、環境が関わることも多いとされます。
+            遺伝の情報は「その子を避けるため」ではなく、「その子に合った健康管理を早めに考えるため」に役立てるものと考えられています。
+          </p>
+        </div>
+
+        <div class="card" id="health-breeds">
+          <h3>犬種ごとの病気</h3>
+          <p>
+            犬種ごとに「なりやすい病気／遺伝病」は、犬種図鑑の各犬種カードの中にまとめています。
+            気になる犬種のカードでご覧ください。
+          </p>
+          <a class="album-link" href="#" data-goto="about">犬種図鑑を見る</a>
+        </div>
+
+        <div class="card" id="health-filaria">
+          <h3>フィラリア</h3>
+          <h4>フィラリア予防が大切な理由</h4>
+          <ul>
+            <li>フィラリア（犬糸状虫）は、蚊に刺されることで感染する寄生虫です。体内に入った幼虫が成長しながら心臓や肺の血管へ移り、そうめん状の細長い成虫になります。</li>
+            <li>感染しても初期はほとんど症状が出ません。気づかないうちに心臓や肺に負担がかかり、咳が出る、散歩で疲れやすい、痩せてくる、といった症状が進んでから見つかることが多いとされます。重くなると命に関わります。</li>
+            <li>治療は長期間かかり、犬の体への負担も大きく、手術が必要になることもあります。「かかってから治す」より「予防する」ほうが、犬にも飼い主にも負担がはるかに小さい病気です。</li>
+            <li>予防薬は月1回が目安で、蚊が出る季節（関東ではおおむね5月〜12月ごろ）を通じて続けます。最後の1回まで欠かさないことが大切です。</li>
+            <li>予防を始める前には血液検査で感染していないか確認します。すでに感染している場合、そのまま予防薬を使うと体調を崩すおそれがあるためです。</li>
+            <li>室内で暮らしていても、蚊は家の中に入ってくるので油断はできません。</li>
+          </ul>
+          <h4>フィラリア感染のメカニズム</h4>
+          <p>
+            フィラリアは、犬から犬へ直接うつるのではなく、<strong>蚊が運び役（媒介）になって広がる</strong>とされます。
+            感染した犬と健康な犬の間を蚊が行き来することで、感染の輪がつながっていきます。その流れを図にまとめました。
+          </p>
+          <figure class="filaria-figure" aria-label="フィラリア感染の流れを示す図解イラスト">
+            <div class="fsteps">
+              <div class="fstep">
+                <div class="fstep-num" aria-hidden="true">1</div>
+                <div class="fstep-body">
+                  <strong>感染した犬の血液の中に幼虫がいる</strong>
+                  <span>心臓などに寄生する成虫が産んだ小さな幼虫（ミクロフィラリア）が、血液の中を流れている状態です。</span>
+                </div>
+              </div>
+              <div class="farrow" aria-hidden="true">↓</div>
+              <div class="fstep">
+                <div class="fstep-num" aria-hidden="true">2</div>
+                <div class="fstep-body">
+                  <strong>蚊がその犬の血を吸い、幼虫も一緒に取り込む</strong>
+                  <span>蚊が感染した犬を刺して吸血するとき、ミクロフィラリアも血液と一緒に蚊の体内へ入ります。</span>
+                </div>
+              </div>
+              <div class="farrow" aria-hidden="true">↓</div>
+              <div class="fstep">
+                <div class="fstep-num" aria-hidden="true">3</div>
+                <div class="fstep-body">
+                  <strong>蚊の体内で約2週間かけて感染力のある幼虫に育つ</strong>
+                  <span>ミクロフィラリアは蚊の体内で脱皮を繰り返し、感染力のある幼虫（第3期幼虫）になります。気温が高い時期ほど進みやすいとされます。</span>
+                </div>
+              </div>
+              <div class="farrow" aria-hidden="true">↓</div>
+              <div class="fstep">
+                <div class="fstep-num" aria-hidden="true">4</div>
+                <div class="fstep-body">
+                  <strong>その蚊が別の犬の血を吸うときに、幼虫が体内へ入る</strong>
+                  <span>育った幼虫は、蚊が別の犬を刺したときに、刺された皮膚のあたりから犬の体内へ入り込むとされます。</span>
+                </div>
+              </div>
+              <div class="farrow" aria-hidden="true">↓</div>
+              <div class="fstep">
+                <div class="fstep-num" aria-hidden="true">5</div>
+                <div class="fstep-body">
+                  <strong>犬の体内で成長しながら移動し、約6〜7か月で心臓や肺の血管へ</strong>
+                  <span>体内に入った幼虫は脱皮・成長しながらゆっくり移動し、半年ほどかけて心臓や肺の血管（肺動脈）にたどり着いて成虫になります。</span>
+                </div>
+              </div>
+              <div class="farrow" aria-hidden="true">↓</div>
+              <div class="fstep">
+                <div class="fstep-num" aria-hidden="true">6</div>
+                <div class="fstep-body">
+                  <strong>成虫が心臓・肺動脈に寄生し、新たな幼虫を産む</strong>
+                  <span>そうめん状で細長い成虫が心臓や肺動脈に寄生し、血液の流れや心臓・肺に負担をかけるとされます。成虫は新たなミクロフィラリアを産み、血液の中へ送り出します。</span>
+                </div>
+              </div>
+              <p class="floop">↺ 6のあとは1に戻ります ― これが「感染の輪」です</p>
+            </div>
+            <figcaption>※イラストはイメージです。感染の流れを分かりやすく示した図解で、実際の大きさや様子とは異なります。</figcaption>
+          </figure>
+          <p><strong>なぜ蚊の季節にだけ起こるのか</strong></p>
+          <ul>
+            <li>蚊の体内で幼虫が育つには、一定の気温と約2週間の期間が必要とされます。そのため、感染が起こるのは蚊が活動し、気温も高い季節が中心になります。逆に、蚊がいない時期に新たな感染が進むことは基本的にないと考えられています。</li>
+            <li>ただし、蚊に刺された時点で感染が成立しても、犬の体内で成虫になるまでには半年以上かかります。その間は幼虫が小さく、血液検査でも見つかりにくい時期があるとされ、症状もほとんど出ません。「刺された直後に調べて陰性だった」ことが、その後の安心につながらないのはこのためです。</li>
+          </ul>
+          <p><strong>予防薬が効く仕組み</strong></p>
+          <ul>
+            <li>予防薬は、成虫を駆除する薬ではなく、<strong>成虫になる前の幼虫の段階で駆除する</strong>仕組みとされます。月1回の投与で、その前の約1か月間に体内へ入った幼虫を、成長が進む前にまとめて駆除していると考えられています。</li>
+            <li>だからこそ、蚊の季節の途中だけでなく、<strong>最後の1回まで欠かさず続ける</strong>ことが大切です。季節の終わりごろに刺されて入った幼虫は、最後の投与で駆除されるためです。途中でやめてしまうと、その分の幼虫が生き残って成虫まで育ってしまうおそれがあります。</li>
+            <li>すでに成虫が寄生している犬に予防を始めると、血液中のミクロフィラリアが一度に駆除される影響などで体調を崩すおそれがあるとされます。そのため、予防を始める前には血液検査で感染していないか確認します（詳しくは上の「フィラリア予防が大切な理由」もご覧ください）。</li>
+          </ul>
+        </div>
+
+        <div class="card" id="health-vet">
+          <h3>動物病院との付き合い方</h3>
+          <ul class="point-list">
+            <li><strong>かかりつけ医</strong> ― 元気なうちにかかりつけの動物病院を見つけておくと安心です。年1回の健康診断で、体重や歯、耳の状態などをチェックしてもらうのがおすすめです。</li>
+            <li><strong>定期的にやること</strong> ― 狂犬病予防接種（年1回、法律で義務づけられています）、混合ワクチン、フィラリア予防（蚊が出る季節に月1回が目安）、ノミ・ダニ予防など。時期や回数は病院で相談を。
+              <h4>狂犬病予防について詳しく</h4>
+              <ul>
+                <li>狂犬病は、犬だけでなく人も感染するウイルス性の病気です。発症すると有効な治療法がなく、ほぼ命を落とすとされる、とても怖い病気です。</li>
+                <li>日本では1957年以降、国内での発生はありません。これは狂犬病予防法にもとづく犬の登録と予防注射が続いてきた成果とされます。ただし世界では今も多くの国で発生していて、海外からウイルスが入ってくる可能性はゼロではありません。</li>
+                <li>法律で、生後91日以上の犬には、生涯1回の登録と、年1回の狂犬病予防注射が義務づけられています。注射を受けると「注射済票」が交付されます。</li>
+                <li>注射の時期は、毎年4月〜6月の集合注射の時期が目安です。動物病院では時期を問わず受けられることが多いので、かかりつけで相談を。</li>
+                <li>予防注射は、自分の犬を守るためだけでなく、人への感染を防ぐための社会全体の仕組みでもあります。</li>
+                <li>体調が悪いときや治療中のときは、獣医師に相談して時期を調整できます。</li>
+              </ul>
+            </li>
+            <li><strong>こんなときは早めに受診を</strong> ― 食欲がない日が続く、吐く・下痢が続く、歩き方がおかしい、呼吸が荒い、お腹が張っている、いつもと様子が違う、など。とくにお腹の張りや落ち着きのなさは、大型犬では緊急の対応が必要になることもあるとされます。迷ったら病院に電話で相談を。</li>
+            <li><strong>大型犬ならではの備え</strong> ― 体重20kgを超えるので、具合が悪いときに抱えて運ぶのは大変です。車での通院手段や、夜間・休日に対応してくれる病院を事前に確認しておきましょう。</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== 6. Dogs ===== -->
       <section id="dogs" hidden>
         <h2>うちの子紹介</h2>
         <p class="section-sub">横浜で暮らす4頭です。全員ホワイトで、男の子はカインだけ。写真をタップすると切り替わります。</p>
@@ -1615,7 +1670,7 @@
         </div>
       </section>
 
-      <!-- ===== 6. FAQ ===== -->
+      <!-- ===== 7. FAQ ===== -->
       <section id="faq" hidden>
         <h2>よくある質問</h2>
         <p class="section-sub">スタンダードプードルとの暮らしを検討している方から、よく聞かれることです。</p>
