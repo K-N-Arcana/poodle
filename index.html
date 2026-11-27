@@ -459,6 +459,53 @@
       @media (prefers-color-scheme: dark) { .caution h3 { color: var(--pink); } }
       .small { font-size: 0.85rem; color: var(--ink-soft); }
 
+      /* ---------- When to go to the vet ---------- */
+      .hospital-intro { font-size: 0.95rem; margin-bottom: 16px; }
+      .urgency-block { border-radius: 12px; padding: 16px 18px 10px; margin-bottom: 16px; }
+      .urgency-block.urgent { background: var(--pink-soft); border: 1.5px solid var(--pink); }
+      .urgency-block.early { background: var(--surface-soft); border: 1.5px solid var(--accent); }
+      .urgency-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0 0 4px; }
+      .urgency-badge {
+        flex-shrink: 0; font-family: "Zen Maru Gothic", sans-serif; font-weight: 900;
+        font-size: 0.82rem; letter-spacing: 0.04em; padding: 4px 12px; border-radius: 999px;
+        line-height: 1.5;
+      }
+      .urgency-block.urgent .urgency-badge { background: var(--pink-strong); color: #fff; }
+      .urgency-block.early .urgency-badge { background: var(--accent); color: #fff; }
+      @media (prefers-color-scheme: dark) {
+        .urgency-block.early .urgency-badge { color: #241d10; }
+      }
+      .urgency-head h4 {
+        font-family: "Zen Maru Gothic", sans-serif; font-weight: 900;
+        font-size: 1.12rem; margin: 0; line-height: 1.4;
+      }
+      .urgency-block.urgent .urgency-head h4 { color: var(--pink-strong); }
+      .urgency-block.early .urgency-head h4 { color: var(--accent-strong); }
+      .urgency-note { font-size: 0.9rem; color: var(--ink-soft); margin: 0 0 10px; }
+      .urgency-list { list-style: none; padding: 0; margin: 0; }
+      .urgency-list li {
+        padding: 10px 0 10px 28px; position: relative; margin: 0;
+        border-top: 1px dashed var(--line); font-size: 0.95rem; line-height: 1.75;
+      }
+      .urgency-list li:first-child { border-top: none; }
+      .urgency-list li::before {
+        position: absolute; left: 2px; top: 10px; font-weight: 900; font-size: 0.95rem;
+      }
+      .urgency-block.urgent .urgency-list li::before { content: "▲"; color: var(--pink-strong); font-size: 0.8rem; top: 12px; }
+      .urgency-block.early .urgency-list li::before { content: "●"; color: var(--accent); font-size: 0.75rem; top: 13px; }
+      .urgency-list li strong { color: var(--ink); }
+      .urgency-list li .sub { display: block; font-size: 0.88rem; color: var(--ink-soft); margin-top: 2px; }
+      .prep-box {
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 12px; padding: 16px 18px 8px; margin-top: 4px;
+      }
+      .prep-box h4 {
+        font-family: "Zen Maru Gothic", sans-serif; font-weight: 700;
+        font-size: 1rem; margin: 0 0 8px; color: var(--accent-strong);
+      }
+      .prep-box ul { margin: 0 0 8px; }
+      .prep-box li { font-size: 0.94rem; }
+
       /* ---------- Breed catalogue ---------- */
       .breed-intro { margin-top: 34px; }
       .breed-nav {
@@ -1224,6 +1271,7 @@
           <a href="#health-breeds">犬種ごとの病気</a>
           <a href="#health-filaria">フィラリア</a>
           <a href="#health-vet">病院と予防接種</a>
+          <a href="#health-hospital">こんな時は病院へ</a>
         </nav>
 
         <div class="gene-mech" id="health-gene">
@@ -1609,6 +1657,60 @@
             <li><strong>こんなときは早めに受診を</strong> ― 食欲がない日が続く、吐く・下痢が続く、歩き方がおかしい、呼吸が荒い、お腹が張っている、いつもと様子が違う、など。とくにお腹の張りや落ち着きのなさは、大型犬では緊急の対応が必要になることもあるとされます。迷ったら病院に電話で相談を。</li>
             <li><strong>大型犬ならではの備え</strong> ― 体重20kgを超えるので、具合が悪いときに抱えて運ぶのは大変です。車での通院手段や、夜間・休日に対応してくれる病院を事前に確認しておきましょう。</li>
           </ul>
+        </div>
+
+        <div class="card" id="health-hospital">
+          <h3>こんな時は病院へ</h3>
+          <p class="hospital-intro">
+            犬は体の不調を言葉で伝えられません。ふだんと違う様子に気づいたら、様子見を長引かせずに受診を考えることが大切とされます。
+            ここでは一般的な目安として、症状を緊急度で2つに分けてまとめました。同じ症状でも、年齢や持病、犬種によって緊急性は変わることがあります。
+            少しでも不安なときは、この目安にとらわれず、かかりつけの動物病院に相談してください。
+          </p>
+
+          <div class="urgency-block urgent">
+            <div class="urgency-head">
+              <span class="urgency-badge">緊急</span>
+              <h4>すぐに病院へ</h4>
+            </div>
+            <p class="urgency-note">緊急性が高いとされる症状です。夜間・休日のときは、救急対応の動物病院も検討してください。まずは電話で症状を伝えてから向かうとスムーズです。</p>
+            <ul class="urgency-list">
+              <li><strong>呼吸が苦しそう、舌や歯ぐきの色が白い・紫色っぽい</strong><span class="sub">呼吸の異常や酸素不足、貧血などが関係していることがあります。</span></li>
+              <li><strong>ぐったりして反応が弱い、倒れた、意識の様子がおかしい</strong><span class="sub">名前を呼んでも反応が鈍い、立てないといった様子が見られるときは急いでください。</span></li>
+              <li><strong>けいれんが続く、または繰り返す</strong><span class="sub">けいれんが数分以上続く、何度も起こる場合は緊急性が高いとされます。周りの物をどけて安全を確保し、様子を動画で残せると診察の助けになります。</span></li>
+              <li><strong>お腹が急に膨らんで苦しそうにし、吐こうとするのに吐けない</strong><span class="sub">胃拡張・捻転症候群の疑いがあるとされます。大型犬や胸の深い犬種で特に注意が必要とされ、短時間で状態が悪くなることがあります。</span></li>
+              <li><strong>嘔吐や下痢を何度も繰り返す、便や吐いた物に血が混じる</strong><span class="sub">脱水が進みやすいため、繰り返す場合や血が混じる場合は早めの受診が大切です。</span></li>
+              <li><strong>おしっこが出ていない</strong><span class="sub">何度もトイレの姿勢を取るのに出ていないときは注意が必要です。特にオスは尿道が詰まりやすいとされます。</span></li>
+              <li><strong>誤飲・誤食をした</strong><span class="sub">チョコレート、玉ねぎ・ねぎ類、キシリトール入りの食品、人の薬、ボタン電池などが挙げられます。食べた物・量・時刻を伝えられるようにし、無理に吐かせないでください。</span></li>
+              <li><strong>大きなケガ、出血が止まらない、骨折の疑い</strong><span class="sub">事故や落下のあとは、見た目に異常がなくても内側にダメージがあることがあります。</span></li>
+              <li><strong>熱中症の疑い（激しい息づかい、大量のよだれ、ふらつき）</strong><span class="sub">涼しい場所へ移し、体を冷やしながら病院へ連絡してください。特に暑い日の散歩や車内での留守番のあとは注意が必要です。</span></li>
+            </ul>
+          </div>
+
+          <div class="urgency-block early">
+            <div class="urgency-head">
+              <span class="urgency-badge">早めに</span>
+              <h4>早めに病院へ</h4>
+            </div>
+            <p class="urgency-note">すぐに命に関わるとは限らないものの、様子見を長引かせない方がよいとされる症状です。数日たっても改善しない、だんだん強くなるといったときは受診を考えてください。</p>
+            <ul class="urgency-list">
+              <li><strong>食欲がない状態が1〜2日続く、水を飲む量やおしっこの量が急に増えた</strong><span class="sub">食欲不振が続く場合や、飲水量・尿量の急な変化は、内臓の病気のサインになることがあります。</span></li>
+              <li><strong>咳が続く、運動を嫌がるようになった</strong><span class="sub">心臓や呼吸器の病気が隠れていることがあります。散歩で疲れやすくなった変化もあわせて伝えてください。</span></li>
+              <li><strong>足を引きずる、歩き方がおかしい、段差や階段を嫌がる</strong><span class="sub">関節や背骨、足の痛みなどが考えられます。無理に運動させず、様子を伝えてください。</span></li>
+              <li><strong>皮膚の痒み・赤みが続く、できものやしこりを見つけた</strong><span class="sub">しこりは、触っただけでは良し悪しが分からないことが多いとされます。見つけた時期や大きさの変化も記録しておくと役立ちます。</span></li>
+              <li><strong>目やにが多い、目を痒がる、耳が臭う・頭をよく振る</strong><span class="sub">目や耳のトラブルは、こじらせると治りにくくなることがあります。</span></li>
+              <li><strong>体重が急に増えた・減った</strong><span class="sub">食事量が変わっていないのに体重が大きく変わるときは、病気が関係していることがあります。</span></li>
+            </ul>
+          </div>
+
+          <div class="prep-box">
+            <h4>迷ったときの備え</h4>
+            <ul>
+              <li>迷ったら、まずかかりつけの動物病院に電話で相談するとよいとされます。「受診した方がよいか」を聞くだけでも大丈夫です。</li>
+              <li>かかりつけと夜間救急の動物病院の連絡先を、スマホに登録しておくと安心です。</li>
+              <li>症状の様子は、動画で撮っておくと診察の助けになることがあります。けいれんや呼吸の様子、歩き方などは、言葉で伝えるより動画の方が分かりやすい場合があります。</li>
+              <li>受診のときは、いつから・どんな症状か、食べた物や飲んでいる薬を伝えられるようにしておくとスムーズです。</li>
+            </ul>
+          </div>
         </div>
       </section>
 
