@@ -258,6 +258,61 @@
       @media (prefers-color-scheme: dark) { .caution h3 { color: var(--pink); } }
       .small { font-size: 0.85rem; color: var(--ink-soft); }
 
+      /* ---------- Breed catalogue ---------- */
+      .breed-intro { margin-top: 34px; }
+      .breed-nav {
+        display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px;
+      }
+      .breed-nav button {
+        min-height: 44px; padding: 8px 16px; border-radius: 999px;
+        border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+        font-family: inherit; font-size: 0.92rem; font-weight: 500; cursor: pointer;
+      }
+      .breed-nav button.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+      @media (prefers-color-scheme: dark) { .breed-nav button.active { color: #241d10; } }
+      .breed-group-title {
+        display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+        margin: 26px 0 4px;
+      }
+      .breed-group-title h3 { margin: 0; font-size: 1.25rem; }
+      .breed-group-title span { font-size: 0.85rem; color: var(--ink-soft); }
+      .breed-grid {
+        display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 12px;
+      }
+      @media (min-width: 680px) { .breed-grid { grid-template-columns: 1fr 1fr; } }
+      .breed-card {
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px 18px 14px;
+      }
+      .breed-card.featured { border: 2px solid var(--accent); }
+      .breed-card[hidden] { display: none; }
+      .breed-card h4 {
+        font-family: "Zen Maru Gothic", sans-serif; font-weight: 900;
+        font-size: 1.12rem; margin: 0; line-height: 1.4;
+      }
+      .breed-card .en { font-size: 0.78rem; color: var(--ink-soft); letter-spacing: 0.04em; }
+      .breed-head { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+      .size-chip {
+        flex-shrink: 0; font-size: 0.78rem; font-weight: 700;
+        padding: 3px 10px; border-radius: 999px;
+        background: var(--accent-soft); color: var(--accent-strong);
+      }
+      .breed-stats {
+        display: flex; gap: 14px; flex-wrap: wrap;
+        background: var(--surface-soft); border-radius: 10px;
+        padding: 8px 12px; margin: 10px 0; font-size: 0.9rem;
+      }
+      .breed-stats b { color: var(--accent-strong); }
+      .breed-rows { margin: 0; font-size: 0.92rem; }
+      .breed-rows dt { font-weight: 700; color: var(--accent-strong); margin-top: 8px; }
+      .breed-rows dt:first-child { margin-top: 0; }
+      .breed-rows dd { margin: 0; }
+      .level { font-weight: 700; }
+      .breed-link {
+        display: inline-block; margin-top: 10px; font-weight: 700;
+        color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px;
+      }
+
       /* ---------- Cut styles ---------- */
       .cuts {
         display: grid;
@@ -507,6 +562,323 @@
           </div>
           <p class="small">※ うちの4頭は全員ホワイトです。年齢とともに色の濃さが少しずつ変わっていく子もいます。</p>
         </div>
+
+        <!-- ===== Breed catalogue ===== -->
+        <div class="breed-intro">
+          <h3 style="font-size:1.3rem;">犬種図鑑 ― サイズ別に見るいろいろな犬種</h3>
+          <p>
+            ここからは、スタンダードプードル以外の犬種も幅広く紹介します。
+            小型犬・中型犬・大型犬の3グループに分け、どの犬種も同じ項目
+            （体高・体重の目安／性格／運動量／お手入れの手間／暮らしのポイント／気をつけたいとされる健康面）でそろえたので、
+            サイズや暮らし方で比べながら読めます。
+          </p>
+          <p class="small">
+            ※ 体高・体重は成犬の一般的な目安で、個体差があります。健康面は「かかりやすいと一般的に紹介されることがあるもの」を挙げたもので、
+            その犬種のすべての子に当てはまるわけではありません。実際の健康管理はかかりつけの獣医師に相談してください。
+          </p>
+          <div class="breed-nav" role="group" aria-label="犬種のサイズで絞り込み">
+            <button type="button" class="active" data-filter="all">すべて</button>
+            <button type="button" data-filter="small">小型犬</button>
+            <button type="button" data-filter="medium">中型犬</button>
+            <button type="button" data-filter="large">大型犬</button>
+          </div>
+          <p class="small">運動量・お手入れの「手間」は、この図鑑の中での相対的な目安です（少なめ／ふつう／多め／とても多め）。</p>
+        </div>
+
+        <div class="breed-group" data-group="small">
+          <div class="breed-group-title"><h3>小型犬</h3><span>成犬の体重がおおむね10kg未満のグループ</span></div>
+          <div class="breed-grid">
+            <article class="breed-card" data-size="small">
+              <div class="breed-head"><div><h4>トイ・プードル</h4><div class="en">Toy Poodle</div></div><span class="size-chip">小型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>24〜28cm前後</b></span><span>体重 <b>2〜3kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>とても賢く、甘えん坊。人と一緒にいるのが大好きとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">ふつう</span> ― 1日合計40分〜1時間程度の散歩が目安とされます。小さい体でも遊びはしっかり必要です。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― 抜け毛は少なめですが毛が伸び続けるため、毎日のブラッシングと月1回前後のトリミングが目安です。</dd>
+                <dt>暮らしのポイント</dt><dd>室内で飼いやすく、マンション暮らしの例も多い犬種です。賢い分、退屈させない工夫と、社会化（いろいろな人・音・場所に慣らすこと）が大切といわれます。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>膝のお皿のトラブル（膝蓋骨脱臼）や目の病気が挙げられることがあります。段差や抱き方にも配慮を。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="small">
+              <div class="breed-head"><div><h4>チワワ</h4><div class="en">Chihuahua</div></div><span class="size-chip">小型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>15〜23cm前後</b></span><span>体重 <b>1.5〜3kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>体は最小クラスでも勇敢で、飼い主に一途といわれます。警戒心が強く、よく吠える子もいます。</dd>
+                <dt>運動量</dt><dd><span class="level">少なめ〜ふつう</span> ― 短めの散歩でも足りる子が多いとされますが、肥満予防に毎日の散歩は大切です。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">少なめ〜ふつう</span> ― 短毛（スムース）は少なめ、長毛（ロング）は定期的なブラッシングが必要です。</dd>
+                <dt>暮らしのポイント</dt><dd>寒さに弱いとされるので、冬の防寒や室温管理を。小さくても「犬らしく」接し、抱っこばかりにしないことも大切といわれます。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>膝蓋骨脱臼、気管や心臓のトラブルが挙げられることがあります。頭の骨の合わせ目が開いたままの子もいるため、頭部への衝撃に注意を。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="small">
+              <div class="breed-head"><div><h4>ミニチュア・ダックスフンド</h4><div class="en">Miniature Dachshund</div></div><span class="size-chip">小型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>13〜18cm前後</b></span><span>体重 <b>4〜5kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>好奇心旺盛で勇敢。もとは穴の中の獲物を追う猟犬で、頑固な一面もあるとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">ふつう</span> ― 小型犬の中では活発な方で、匂いを嗅ぎながらの散歩を楽しむ子が多いようです。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">ふつう</span> ― 毛のタイプ（短毛・長毛・剛毛）で差があります。垂れ耳なので耳の中のチェックも習慣に。</dd>
+                <dt>暮らしのポイント</dt><dd>胴が長い体形のため、ソファなど段差の上り下りや肥満には特に配慮を。階段にはスロープやゲートが安心です。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>背骨の椎間板ヘルニアがよく知られます。体重管理と段差対策が予防の基本といわれます。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="small">
+              <div class="breed-head"><div><h4>ポメラニアン</h4><div class="en">Pomeranian</div></div><span class="size-chip">小型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>18〜22cm前後</b></span><span>体重 <b>1.5〜3.5kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>明るく活発で、好奇心いっぱい。飼い主のそばにいたがる甘えん坊な面もあります。</dd>
+                <dt>運動量</dt><dd><span class="level">ふつう</span> ― 小さな体でもよく動きます。室内遊びと散歩を組み合わせるのが目安です。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― ふわふわの二重の毛（ダブルコート）で、換毛期は抜け毛が増えます。こまめなブラッシングを。</dd>
+                <dt>暮らしのポイント</dt><dd>警戒心から吠えやすい傾向があるとされます。子犬の頃からの社会化と、吠えへの向き合い方が暮らしやすさにつながります。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>膝蓋骨脱臼や気管虚脱、毛が薄くなる皮膚のトラブルが挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="small">
+              <div class="breed-head"><div><h4>シーズー</h4><div class="en">Shih Tzu</div></div><span class="size-chip">小型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>20〜28cm前後</b></span><span>体重 <b>4〜7kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>穏やかで人懐っこく、愛玩犬として長く愛されてきた犬種です。マイペースな子が多いとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">少なめ〜ふつう</span> ― 長距離の運動より、毎日の穏やかな散歩と室内遊びが向いているといわれます。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― 長い毛を伸ばす場合は毎日の手入れが必須。短くカットすれば手間は減らせます。</dd>
+                <dt>暮らしのポイント</dt><dd>鼻が短い体形のため暑さに弱いとされます。夏の室温管理と、散歩の時間帯の配慮が大切です。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>目が出ている分、目のトラブルや皮膚のトラブルが挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="small">
+              <div class="breed-head"><div><h4>マルチーズ</h4><div class="en">Maltese</div></div><span class="size-chip">小型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>20〜25cm前後</b></span><span>体重 <b>2〜3kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>甘えん坊で穏やか、人に寄り添うのが好きとされます。感受性が豊かな子が多いようです。</dd>
+                <dt>運動量</dt><dd><span class="level">少なめ〜ふつう</span> ― 室内遊び中心でも暮らせますが、気分転換と肥満予防に散歩は大切です。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― 真っ白な長い毛は汚れが目立ちやすく、毎日のブラッシングと目のまわりのケアが目安です。</dd>
+                <dt>暮らしのポイント</dt><dd>ひとり時間が苦手な子もいるとされます。留守番は短い時間から少しずつ慣らすのが安心です。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>膝蓋骨脱臼、涙やけ、歯のトラブルが挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="small">
+              <div class="breed-head"><div><h4>パピヨン</h4><div class="en">Papillon</div></div><span class="size-chip">小型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>20〜28cm前後</b></span><span>体重 <b>3〜5kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>蝶のような大きな耳が特徴。賢く活発で、小型犬の中では運動好きな方とされます。</dd>
+                <dt>運動量</dt><dd><span class="level">ふつう〜多め</span> ― 散歩に加えて、ドッグスポーツを楽しむ子もいるほど活発です。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">ふつう</span> ― 長毛ですが一重の毛（シングルコート）で、もつれにくい方といわれます。週数回のブラッシングが目安です。</dd>
+                <dt>暮らしのポイント</dt><dd>骨が細いので、高い所からの飛び降りや落下に注意を。頭の良さを活かした遊びが向いています。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>膝蓋骨脱臼や歯のトラブルが挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="small">
+              <div class="breed-head"><div><h4>ヨークシャー・テリア</h4><div class="en">Yorkshire Terrier</div></div><span class="size-chip">小型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>18〜23cm前後</b></span><span>体重 <b>2〜3kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>テリアらしく勇敢で活発。小さくても自己主張がはっきりしているとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">ふつう</span> ― 室内遊びと散歩を合わせて、毎日体を動かす時間を。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― 絹のような長い毛は毎日のブラッシングが目安。短くカットするスタイルも人気です。</dd>
+                <dt>暮らしのポイント</dt><dd>寒さに弱いとされるので防寒を。賢く覚えが早い分、トイレなど基本のしつけは早めに始めるとよいとされます。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>膝蓋骨脱臼、気管虚脱、歯のトラブルが挙げられることがあります。</dd>
+              </dl>
+            </article>
+          </div>
+        </div>
+
+        <div class="breed-group" data-group="medium">
+          <div class="breed-group-title"><h3>中型犬</h3><span>成犬の体重がおおむね10〜25kg前後のグループ</span></div>
+          <div class="breed-grid">
+            <article class="breed-card" data-size="medium">
+              <div class="breed-head"><div><h4>柴犬</h4><div class="en">Shiba Inu</div></div><span class="size-chip">中型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>35〜43cm前後</b></span><span>体重 <b>8〜14kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>飼い主に忠実で、独立心が強い日本の犬。距離感を大切にする子が多いとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">多め</span> ― 1日合計1時間以上の散歩が目安とされます。屋外で過ごすのが好きな子も多いようです。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">ふつう〜多め</span> ― 普段は週数回のブラッシングで足りますが、換毛期は抜け毛がとても増えます。</dd>
+                <dt>暮らしのポイント</dt><dd>頑固な面もあるため、子犬の頃からの社会化としつけが大切といわれます。信頼関係を築くと強い絆が生まれる犬種です。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>皮膚のアレルギーや、高齢期の認知機能の変化が挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="medium">
+              <div class="breed-head"><div><h4>フレンチ・ブルドッグ</h4><div class="en">French Bulldog</div></div><span class="size-chip">中型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>24〜35cm前後</b></span><span>体重 <b>8〜14kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>愛嬌があり、人と一緒にいるのが大好き。穏やかで甘えん坊とされます。</dd>
+                <dt>運動量</dt><dd><span class="level">少なめ〜ふつう</span> ― 長距離の運動は向きません。短めの散歩をこまめに、が目安です。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">少なめ</span> ― 短毛で手入れは比較的簡単です。顔のしわの間を清潔に保つケアは習慣に。</dd>
+                <dt>暮らしのポイント</dt><dd>鼻が短く暑さに弱いため、夏はエアコンのある室内管理が必須といわれます。真夏の昼間の散歩は避けてください。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>呼吸器のトラブル（短頭種気道症候群）や皮膚のトラブル、熱中症への注意がよく挙げられます。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="medium">
+              <div class="breed-head"><div><h4>ビーグル</h4><div class="en">Beagle</div></div><span class="size-chip">中型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>33〜40cm前後</b></span><span>体重 <b>8〜14kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>陽気で友好的。群れで働く猟犬だったため、ほかの犬とも仲良くしやすいとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">多め</span> ― 嗅覚で獲物を追っていた犬種で、匂いを嗅ぎながらの長い散歩が大好きとされます。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">少なめ〜ふつう</span> ― 短毛ですが抜け毛は多め。垂れ耳なので耳のチェックも忘れずに。</dd>
+                <dt>暮らしのポイント</dt><dd>食欲が旺盛で太りやすいとされます。食事量の管理と、大きな鳴き声への配慮（住環境）も考えておきましょう。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>肥満、耳のトラブル、てんかんが挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="medium">
+              <div class="breed-head"><div><h4>ウェルシュ・コーギー・ペンブローク</h4><div class="en">Welsh Corgi Pembroke</div></div><span class="size-chip">中型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>25〜30cm前後</b></span><span>体重 <b>10〜14kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>短い足で牛を追っていた牧畜犬。賢く活発で、働くのが好きとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">多め</span> ― 見た目以上に体力があります。散歩と遊びでしっかり発散を。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― ダブルコートで抜け毛が多く、換毛期は特にこまめなブラッシングが必要です。</dd>
+                <dt>暮らしのポイント</dt><dd>胴が長いため段差と肥満に配慮を。食欲旺盛なので、ついあげすぎない管理も大切です。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>椎間板ヘルニアや肥満、目の病気が挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="medium">
+              <div class="breed-head"><div><h4>ボーダー・コリー</h4><div class="en">Border Collie</div></div><span class="size-chip">中型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>45〜55cm前後</b></span><span>体重 <b>14〜20kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>牧羊犬として非常に賢く、運動能力も高いとされる犬種です。人の指示を理解するのが得意といわれます。</dd>
+                <dt>運動量</dt><dd><span class="level">とても多め</span> ― 散歩だけでなく、走る・考える遊びが毎日必要とされます。運動不足は問題行動につながりやすいといわれます。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">ふつう〜多め</span> ― 週数回のブラッシングが目安で、換毛期は抜け毛が増えます。</dd>
+                <dt>暮らしのポイント</dt><dd>「仕事」を与える暮らしが向いています。ドッグスポーツやトレーニングを一緒に楽しめる家庭向きとされます。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>股関節のトラブルや目の病気が挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="medium">
+              <div class="breed-head"><div><h4>キャバリア・キング・チャールズ・スパニエル</h4><div class="en">Cavalier King Charles Spaniel</div></div><span class="size-chip">中型犬寄り</span></div>
+              <div class="breed-stats"><span>体高 <b>30〜33cm前後</b></span><span>体重 <b>5〜8kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>温和で人懐っこく、誰にでも友好的とされます。小型寄りのサイズで、この図鑑では中型の入口として紹介します。</dd>
+                <dt>運動量</dt><dd><span class="level">ふつう</span> ― 穏やかな散歩と室内遊びで満足する子が多いとされます。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">ふつう</span> ― 絹のような毛と垂れ耳のケアに、週数回のブラッシングが目安です。</dd>
+                <dt>暮らしのポイント</dt><dd>人と離れるのが苦手な子もいるとされます。子どもや高齢の方とも暮らしやすい穏やかさが魅力です。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>心臓の病気（僧帽弁閉鎖不全症）がよく知られます。定期的な心臓のチェックが勧められることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="medium">
+              <div class="breed-head"><div><h4>ミニチュア・シュナウザー</h4><div class="en">Miniature Schnauzer</div></div><span class="size-chip">中型犬寄り</span></div>
+              <div class="breed-stats"><span>体高 <b>30〜35cm前後</b></span><span>体重 <b>4〜8kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>賢く活発で、飼い主に忠実。口ひげのような毛が特徴のテリア系の犬種です。</dd>
+                <dt>運動量</dt><dd><span class="level">ふつう〜多め</span> ― 小型寄りでも体力はしっかりあります。毎日の散歩と遊びを。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― 抜け毛は少なめですが、定期的なトリミングと毎日のブラッシングが目安です。</dd>
+                <dt>暮らしのポイント</dt><dd>警戒心が強く吠えやすい面もあるとされます。社会化と、吠えへの向き合い方を早めに。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>尿路結石や膵炎などが挙げられることがあります。脂っこい食事にも配慮を。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="medium">
+              <div class="breed-head"><div><h4>アメリカン・コッカー・スパニエル</h4><div class="en">American Cocker Spaniel</div></div><span class="size-chip">中型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>34〜39cm前後</b></span><span>体重 <b>11〜13kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>明るく甘えん坊で、人と遊ぶのが大好きとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">ふつう〜多め</span> ― もとは鳥猟犬。散歩に加えて遊びの時間があると満足度が上がります。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― 長く豊かな毛は毎日のブラッシングが目安。長い垂れ耳のケアも大切です。</dd>
+                <dt>暮らしのポイント</dt><dd>耳が蒸れやすいので、食後や水遊び後の耳チェックを習慣に。太りやすいとされるため食事管理も。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>耳のトラブル、目や皮膚のトラブルが挙げられることがあります。</dd>
+              </dl>
+            </article>
+          </div>
+        </div>
+
+        <div class="breed-group" data-group="large">
+          <div class="breed-group-title"><h3>大型犬</h3><span>成犬の体重がおおむね25kg以上のグループ</span></div>
+          <div class="breed-grid">
+            <article class="breed-card featured" data-size="large">
+              <div class="breed-head"><div><h4>スタンダード・プードル</h4><div class="en">Standard Poodle</div></div><span class="size-chip">大型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>45〜60cm前後</b></span><span>体重 <b>20〜30kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>とても賢く、人と一緒にいるのが大好き。活発で遊び好きとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">多め</span> ― 1日合計1〜2時間程度が目安とされます（詳しくは「暮らしのポイント」タブへ）。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― 抜け毛は少なめですが、毎日のブラッシングと4〜6週に1回程度のトリミングが必要です（詳しくは「お手入れ」タブへ）。</dd>
+                <dt>暮らしのポイント</dt><dd>このサイトで暮らしぶりを詳しく紹介している犬種です。うちの4頭（カノン・カイン・リノン・ジュノン）もこの犬種です。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>胃捻転、股関節のトラブル、皮膚のトラブルが挙げられることがあります（詳しくは「暮らしのポイント」タブへ）。</dd>
+              </dl>
+              <a class="breed-link" href="#about" data-goto="about">↑ このページ上部のスタンダードプードル詳説へ</a>
+            </article>
+            <article class="breed-card" data-size="large">
+              <div class="breed-head"><div><h4>ゴールデン・レトリーバー</h4><div class="en">Golden Retriever</div></div><span class="size-chip">大型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>51〜61cm前後</b></span><span>体重 <b>25〜34kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>温和で人懐っこく、家族思いとされます。水辺で獲物を回収する仕事をしてきた犬種で、水遊びが好きな子も多いようです。</dd>
+                <dt>運動量</dt><dd><span class="level">多め</span> ― 1日合計1〜2時間程度の散歩・運動が目安とされます。若い頃は特にエネルギッシュです。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― 豊かなダブルコートで抜け毛が多く、週数回以上のブラッシングが目安です。換毛期は特に増えます。</dd>
+                <dt>暮らしのポイント</dt><dd>人と関わるのが大好きで、長時間の留守番が続くと寂しがるとされます。物をくわえるのが好きなので、噛んでいいおもちゃを用意すると安心です。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>股関節のトラブル、耳のトラブル、がんの発生が比較的多いとする紹介もあります。定期的な健康診断が勧められることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="large">
+              <div class="breed-head"><div><h4>ラブラドール・レトリーバー</h4><div class="en">Labrador Retriever</div></div><span class="size-chip">大型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>54〜57cm前後</b></span><span>体重 <b>25〜36kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>陽気で友好的、盲導犬など人のパートナーとしても活躍する犬種です。水が大好きとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">とても多め</span> ― 体力があり、若い頃は特に運動量が必要です。泳ぎやレトリーブ（持ってくる遊び）が大好きな子が多いようです。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">ふつう</span> ― 短毛ですがダブルコートで抜け毛は多め。週数回のブラッシングが目安です。</dd>
+                <dt>暮らしのポイント</dt><dd>食欲が非常に旺盛で太りやすいとされます。拾い食いや誤食にも注意し、食事とおやつの量をしっかり管理しましょう。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>肥満、股関節・肘のトラブル、耳のトラブルが挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="large">
+              <div class="breed-head"><div><h4>ジャーマン・シェパード・ドッグ</h4><div class="en">German Shepherd Dog</div></div><span class="size-chip">大型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>55〜65cm前後</b></span><span>体重 <b>22〜40kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>忠実で賢く、警察犬・災害救助犬などでも活躍する犬種です。家族を守ろうとする意識が強いとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">とても多め</span> ― 体力と知力の両方を使う活動が必要とされます。トレーニング自体を楽しめる犬種です。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― ダブルコートで抜け毛が多く、換毛期は特にこまめなブラッシングが必要です。</dd>
+                <dt>暮らしのポイント</dt><dd>しっかりしたしつけと社会化が欠かせないとされます。初心者にはハードルが高い面もあるため、トレーナーへの相談も選択肢です。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>股関節のトラブルや胃捻転が挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="large">
+              <div class="breed-head"><div><h4>シベリアン・ハスキー</h4><div class="en">Siberian Husky</div></div><span class="size-chip">大型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>50〜60cm前後</b></span><span>体重 <b>16〜27kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>そりを引いてきた犬種らしく、自由で活発、友好的とされます。独立心が強い面もあります。</dd>
+                <dt>運動量</dt><dd><span class="level">とても多め</span> ― 長距離を走る体力があります。毎日のしっかりした運動が欠かせないとされます。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― 厚いダブルコートの換毛期は抜け毛がとても増えます。ブラッシングはこまめに。</dd>
+                <dt>暮らしのポイント</dt><dd>暑さに弱いため、夏の室温管理と散歩の時間帯に十分な配慮を。脱走や穴掘りが得意な子もいるので、庭やリードの管理も大切です。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>目の病気や股関節のトラブルが挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="large">
+              <div class="breed-head"><div><h4>バーニーズ・マウンテン・ドッグ</h4><div class="en">Bernese Mountain Dog</div></div><span class="size-chip">大型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>58〜70cm前後</b></span><span>体重 <b>30〜50kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>スイスの山で働いてきた、穏やかで優しい超大型寄りの犬種です。家族に寄り添うのが好きとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">多め</span> ― 大きな体に合わせた毎日の散歩が必要ですが、激しい運動より穏やかな活動が向いているといわれます。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― 長く厚い毛で抜け毛が多く、週数回以上のブラッシングが目安です。</dd>
+                <dt>暮らしのポイント</dt><dd>暑さに弱いため夏の管理が大切です。体がとても大きいので、室内のスペース、車、通院手段をあらかじめ考えておきましょう。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>股関節のトラブルやがんなどが挙げられることがあり、大型犬の中では寿命が短めとする紹介もあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="large">
+              <div class="breed-head"><div><h4>秋田犬</h4><div class="en">Akita Inu</div></div><span class="size-chip">大型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>61〜71cm前後</b></span><span>体重 <b>25〜45kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>忠犬として知られる日本の大型犬。落ち着きがあり、家族以外には慎重な面もあるとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">多め</span> ― 雪国で働いてきた体力があります。毎日のしっかりした散歩が目安です。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">多め</span> ― 厚いダブルコートで、換毛期の抜け毛はとても多くなります。</dd>
+                <dt>暮らしのポイント</dt><dd>力が強く体も大きいため、子犬の頃からの社会化と、引っ張りへの対策（ハーネスやトレーニング）が大切といわれます。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>胃捻転、皮膚のトラブル、甲状腺の病気が挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="large">
+              <div class="breed-head"><div><h4>ドーベルマン</h4><div class="en">Doberman Pinscher</div></div><span class="size-chip">大型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>63〜72cm前後</b></span><span>体重 <b>30〜45kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>賢く警戒心が強い、護衛犬として作られた犬種です。家族には甘えん坊な面もあるとされます。</dd>
+                <dt>運動量</dt><dd><span class="level">とても多め</span> ― 筋肉質で運動能力が高く、毎日の十分な運動と頭を使う遊びが必要とされます。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">少なめ</span> ― 短く滑らかな毛で、手入れは大型犬の中では簡単な方です。冬は寒さ対策を。</dd>
+                <dt>暮らしのポイント</dt><dd>社会化としつけが特に大切とされる犬種です。経験者向きといわれることも多く、迎える前に十分な下調べを。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>心臓の病気（拡張型心筋症）や胃捻転が挙げられることがあります。</dd>
+              </dl>
+            </article>
+            <article class="breed-card" data-size="large">
+              <div class="breed-head"><div><h4>サモエド</h4><div class="en">Samoyed</div></div><span class="size-chip">大型犬</span></div>
+              <div class="breed-stats"><span>体高 <b>48〜60cm前後</b></span><span>体重 <b>16〜30kg前後</b></span></div>
+              <dl class="breed-rows">
+                <dt>性格</dt><dd>「サモエドスマイル」と呼ばれる表情で知られ、明るく人懐っこいとされます。そり引きやトナカイの番をしてきた犬種です。</dd>
+                <dt>運動量</dt><dd><span class="level">多め</span> ― 活発で、毎日の散歩と遊びでしっかり発散させてあげることが大切です。</dd>
+                <dt>お手入れの手間</dt><dd><span class="level">とても多め</span> ― 真っ白で厚いダブルコートは抜け毛が多く、こまめなブラッシングが欠かせないとされます。</dd>
+                <dt>暮らしのポイント</dt><dd>寒い地域の犬種なので暑さに弱く、夏の管理が大切です。よく吠える・鳴く子もいるため、住環境への配慮も。</dd>
+                <dt>気をつけたいとされる健康面</dt><dd>股関節のトラブルや目の病気が挙げられることがあります。</dd>
+              </dl>
+            </article>
+          </div>
+        </div>
+        <p class="small" style="margin-top:16px;">※ ここで紹介したのは代表的な犬種の一部です。同じ犬種でも性格や体格には個体差があります。犬種の特徴は「傾向」として参考にし、迎える際は実際にその子と会って相性を見ることが大切です。</p>
       </section>
 
       <!-- ===== 2. Personality ===== -->
@@ -950,6 +1322,30 @@
             var siblings = btn.parentElement.querySelectorAll('button');
             siblings.forEach(function (b) { b.classList.remove('active'); });
             btn.classList.add('active');
+          });
+        });
+
+        // Breed catalogue filter (in-memory only)
+        var filterBtns = document.querySelectorAll('.breed-nav button[data-filter]');
+        var breedCards = document.querySelectorAll('.breed-card[data-size]');
+        var breedGroups = document.querySelectorAll('.breed-group[data-group]');
+        filterBtns.forEach(function (fb) {
+          fb.addEventListener('click', function () {
+            var f = fb.getAttribute('data-filter');
+            filterBtns.forEach(function (b) { b.classList.toggle('active', b === fb); });
+            breedCards.forEach(function (card) {
+              card.hidden = !(f === 'all' || card.getAttribute('data-size') === f);
+            });
+            breedGroups.forEach(function (g) {
+              g.style.display = (f === 'all' || g.getAttribute('data-group') === f) ? '' : 'none';
+            });
+          });
+        });
+        document.querySelectorAll('[data-goto]').forEach(function (link) {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            showPage(link.getAttribute('data-goto'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           });
         });
 
