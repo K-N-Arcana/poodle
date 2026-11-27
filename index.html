@@ -26,6 +26,7 @@
         --accent-soft: #efe3cb;
         --pink: #c96f7f;
         --pink-soft: #f9e8ea;
+        --pink-strong: #9c4453;
         --shadow: 0 2px 10px rgba(80, 64, 32, 0.10);
         --radius: 14px;
       }
@@ -42,6 +43,7 @@
           --accent-soft: #3d3423;
           --pink: #e59aa7;
           --pink-soft: #453035;
+          --pink-strong: #f2b8c1;
           --shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
         }
       }
@@ -365,6 +367,35 @@
       .punnett-legend .lg-affected::before { background: var(--pink-soft); }
       .punnett-legend .lg-carrier::before { background: var(--accent-soft); }
       .punnett-legend .lg-clear::before { background: var(--surface); }
+
+      /* ---------- Inheritance pattern tables ---------- */
+      .combo-type {
+        font-family: "Zen Maru Gothic", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--accent-strong);
+        margin: 20px 0 4px;
+      }
+      .combo-list { display: flex; flex-direction: column; gap: 10px; margin: 10px 0 6px; }
+      .combo {
+        background: var(--surface-soft);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+      }
+      .combo-head { font-weight: 700; font-size: 0.95rem; line-height: 1.6; }
+      .combo-head .combo-vs { color: var(--accent); font-weight: 900; padding: 0 2px; }
+      .combo-bar { display: flex; gap: 2px; height: 24px; margin: 8px 0 6px; }
+      .combo-bar .seg {
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.75rem; font-weight: 700; line-height: 1;
+        border-radius: 5px; white-space: nowrap; overflow: hidden; min-width: 0;
+      }
+      .seg-clear { background: var(--surface); color: var(--ink-soft); box-shadow: inset 0 0 0 1px var(--line); }
+      .seg-carrier { background: var(--accent-soft); color: var(--accent-strong); }
+      .seg-affected { background: var(--pink-soft); color: var(--pink-strong); }
+      .combo-detail { font-size: 0.88rem; margin: 0; line-height: 1.7; }
+      .combo-detail b { color: var(--accent-strong); }
 
       .caution {
         background: var(--pink-soft);
@@ -719,6 +750,141 @@
               </div>
               <figcaption>※図はイメージです。割合は1頭ごとの目安で、実際のきょうだいの頭数や内訳がこの通りになるわけではありません。</figcaption>
             </figure>
+
+            <h4>遺伝の組み合わせ 全パターン表</h4>
+            <p>
+              図Bで示した「両親ともキャリア」の組み合わせを、親の組み合わせの全パターンに広げた表です。
+              用語はこれまでと同じで、<b>クリア</b>＝変異を持たないタイプ、<b>キャリア</b>＝変異を1つ持つタイプ、
+              <b>発症型</b>＝変異を2つ持つタイプを指します（優性遺伝では、変異を1つ持つ場合も発症型に含めます）。
+              バーの長さと色で、子の割合の目安が比べられます。
+            </p>
+            <div class="punnett-legend" aria-hidden="true">
+              <span class="lg-clear">クリア</span>
+              <span class="lg-carrier">キャリア</span>
+              <span class="lg-affected">発症型</span>
+            </div>
+
+            <p class="combo-type">常染色体劣性遺伝 ― 親の組み合わせ全6パターン</p>
+            <p>
+              犬の遺伝病で多いとされるタイプです。発症型になるのは、変異を父と母の両方から受け取り、
+              2つそろった場合です。キャリア同士の組み合わせ（パターン4）で出てくる割合が、図Bの詳しい表です。
+            </p>
+            <div class="combo-list">
+              <div class="combo">
+                <div class="combo-head">1．クリア <span class="combo-vs">×</span> クリア</div>
+                <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア100パーセント、キャリア0パーセント、発症型0パーセント">
+                  <span class="seg seg-clear" style="width:100%">100％</span>
+                </div>
+                <p class="combo-detail">子の目安 ― クリア <b>100％</b>／キャリア 0％／発症型 0％。両親とも変異を持たないため、子に変異は伝わりません。</p>
+              </div>
+              <div class="combo">
+                <div class="combo-head">2．クリア <span class="combo-vs">×</span> キャリア</div>
+                <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア50パーセント、キャリア50パーセント、発症型0パーセント">
+                  <span class="seg seg-clear" style="width:50%">50％</span>
+                  <span class="seg seg-carrier" style="width:50%">50％</span>
+                </div>
+                <p class="combo-detail">子の目安 ― クリア <b>50％</b>／キャリア <b>50％</b>／発症型 0％。変異が伝わっても1つだけなので、発症型は生まれません。</p>
+              </div>
+              <div class="combo">
+                <div class="combo-head">3．クリア <span class="combo-vs">×</span> 発症型</div>
+                <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア0パーセント、キャリア100パーセント、発症型0パーセント">
+                  <span class="seg seg-carrier" style="width:100%">100％</span>
+                </div>
+                <p class="combo-detail">子の目安 ― クリア 0％／キャリア <b>100％</b>／発症型 0％。子は全員、発症型の親から変異を1つ受け取るためキャリアになります。</p>
+              </div>
+              <div class="combo">
+                <div class="combo-head">4．キャリア <span class="combo-vs">×</span> キャリア</div>
+                <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア25パーセント、キャリア50パーセント、発症型25パーセント">
+                  <span class="seg seg-clear" style="width:25%">25％</span>
+                  <span class="seg seg-carrier" style="width:50%">50％</span>
+                  <span class="seg seg-affected" style="width:25%">25％</span>
+                </div>
+                <p class="combo-detail">子の目安 ― クリア <b>25％</b>／キャリア <b>50％</b>／発症型 <b>25％</b>。図Bはこのパターンの詳しい組み合わせ表です。見た目では分からないキャリア同士から、発症型の子が生まれる可能性がある組み合わせです。</p>
+              </div>
+              <div class="combo">
+                <div class="combo-head">5．キャリア <span class="combo-vs">×</span> 発症型</div>
+                <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア0パーセント、キャリア50パーセント、発症型50パーセント">
+                  <span class="seg seg-carrier" style="width:50%">50％</span>
+                  <span class="seg seg-affected" style="width:50%">50％</span>
+                </div>
+                <p class="combo-detail">子の目安 ― クリア 0％／キャリア <b>50％</b>／発症型 <b>50％</b>。発症型の親からは必ず変異が1つ伝わり、キャリアの親からも伝わるかどうかで分かれます。</p>
+              </div>
+              <div class="combo">
+                <div class="combo-head">6．発症型 <span class="combo-vs">×</span> 発症型</div>
+                <div class="combo-bar" role="img" aria-label="子の割合の目安：クリア0パーセント、キャリア0パーセント、発症型100パーセント">
+                  <span class="seg seg-affected" style="width:100%">100％</span>
+                </div>
+                <p class="combo-detail">子の目安 ― クリア 0％／キャリア 0％／発症型 <b>100％</b>。両親とも変異を2つ持つため、子は全員、変異を2つ受け取ります。</p>
+              </div>
+            </div>
+
+            <p class="combo-type">常染色体優性遺伝 ― 代表パターン</p>
+            <p>
+              優性遺伝では、変異を1つ持つだけでも発症することがあります。そのため発症型には、
+              変異を1つ持つタイプ（ヘテロ）と、2つ持つタイプ（ホモ）があります。
+              病気によっては、ホモでは症状が重くなる場合や、ホモの子が生まれにくい場合もあります。
+            </p>
+            <div class="combo-list">
+              <div class="combo">
+                <div class="combo-head">1．クリア <span class="combo-vs">×</span> 発症型（変異1つ・ヘテロ）</div>
+                <div class="combo-bar" role="img" aria-label="子の割合の目安：発症型約50パーセント、クリア約50パーセント">
+                  <span class="seg seg-clear" style="width:50%">50％</span>
+                  <span class="seg seg-affected" style="width:50%">50％</span>
+                </div>
+                <p class="combo-detail">子の目安 ― 発症型 <b>約50％</b>／クリア <b>約50％</b>。優性遺伝では「キャリア」という区分はなく、変異を受け取った子は発症型として数えます。</p>
+              </div>
+              <div class="combo">
+                <div class="combo-head">2．発症型（変異1つ・ヘテロ）<span class="combo-vs">×</span> 発症型（変異1つ・ヘテロ）</div>
+                <div class="combo-bar" role="img" aria-label="子の割合の目安：発症型約75パーセント、クリア約25パーセント">
+                  <span class="seg seg-clear" style="width:25%">25％</span>
+                  <span class="seg seg-affected" style="width:75%">75％</span>
+                </div>
+                <p class="combo-detail">子の目安 ― 発症型 <b>約75％</b>（内訳：変異2つのホモ約25％・変異1つのヘテロ約50％）／クリア <b>約25％</b>。</p>
+              </div>
+              <div class="combo">
+                <div class="combo-head">3．発症型（変異2つ・ホモ）<span class="combo-vs">×</span> クリア</div>
+                <div class="combo-bar" role="img" aria-label="子の割合の目安：発症型100パーセント">
+                  <span class="seg seg-affected" style="width:100%">100％</span>
+                </div>
+                <p class="combo-detail">子の目安 ― 発症型 <b>100％</b>。子は全員、ホモの親から変異を1つ受け取り、変異1つの発症型（ヘテロ）として生まれます。</p>
+              </div>
+            </div>
+            <p class="small">
+              ※ 優性遺伝では、同じ変異を持っていても、発症する時期や症状の程度に個体差が大きい病気が多くあります。
+              「発症型＝必ず重い症状が出る」とは限らず、変異を持ちながら症状がほとんど出ないまま過ごす子もいるとされます。
+            </p>
+
+            <p class="combo-type">X染色体に伴う劣性遺伝 ― 代表パターン</p>
+            <p>
+              性別を決める染色体のうち、X染色体にある遺伝子の変異が関わるタイプです。
+              オスはX染色体を1本（母から）、メスは2本（父と母から1本ずつ）持ちます。
+              オスはXが1本しかないため、母から変異のあるXを受け取ると、もう一方の正常な遺伝子で補うことができず発症しやすくなります。
+              メスは2本のうち1本に変異があっても、もう1本が働くためキャリアになることが多い、という出方の違いがあります。
+            </p>
+            <div class="combo-list">
+              <div class="combo">
+                <div class="combo-head">1．母がキャリア <span class="combo-vs">×</span> 父がクリア</div>
+                <p class="combo-detail">子の目安 ― オスの子：約50％が発症型、約50％がクリア／メスの子：約50％がキャリア、約50％がクリア。発症型が出るとすればオスの子です。</p>
+              </div>
+              <div class="combo">
+                <div class="combo-head">2．母がクリア <span class="combo-vs">×</span> 父が発症型</div>
+                <p class="combo-detail">子の目安 ― メスの子：全員キャリア（父から変異のあるXを受け取るため）／オスの子：全員クリア（父からはY染色体を受け取り、Xは母から受け取るため）。</p>
+              </div>
+              <div class="combo">
+                <div class="combo-head">3．母がキャリア <span class="combo-vs">×</span> 父が発症型</div>
+                <p class="combo-detail">子の目安 ― オスの子：約50％が発症型、約50％がクリア／メスの子：約50％が発症型、約50％がキャリア。この組み合わせでは、メスの子にも発症型が出る可能性があります。</p>
+              </div>
+            </div>
+
+            <p>
+              ※ ここまでの割合はすべて、子1頭ごとに考えたときの確率の目安です。
+              実際のきょうだいの頭数や内訳がその通りになるとは限らず、たとえばキャリア同士の子が、たまたま全員クリアということもあります。
+            </p>
+            <p>
+              ※ また、「発症型」とされる子でも、病気によっては発症しない、あるいは軽く済む場合があります。
+              変異があっても症状として現れる割合（浸透率）は病気ごとに違い、発症する年齢にも幅があります。
+              割合はあくまで目安として読み、気になることがあれば、かかりつけの獣医師や遺伝子検査の相談先で確認してください。
+            </p>
 
             <h4>遺伝の仕組みの基本</h4>
             <p>
