@@ -349,6 +349,40 @@
         background: var(--accent-soft); border-radius: 999px; padding: 8px 14px;
       }
 
+      /* ---------- Welcome flow (お迎えしてからの流れ) ---------- */
+      .welcome-intro { font-size: 0.95rem; margin: 0 0 16px; }
+      .welcome-steps { display: flex; flex-direction: column; margin: 0 0 8px; }
+      .welcome-step {
+        display: flex; gap: 14px; align-items: flex-start;
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 12px; box-shadow: var(--shadow);
+        padding: 16px 18px;
+      }
+      .welcome-step-badge {
+        flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        width: 58px; min-height: 58px; border-radius: 12px;
+        background: var(--accent); color: #fff; padding: 6px 4px; text-align: center; line-height: 1.2;
+      }
+      @media (prefers-color-scheme: dark) { .welcome-step-badge { color: #241d10; } }
+      .welcome-step-badge .step-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; }
+      .welcome-step-badge .step-num { font-family: "Zen Maru Gothic", sans-serif; font-weight: 900; font-size: 1.45rem; line-height: 1.1; }
+      .welcome-step-body { min-width: 0; flex: 1; }
+      .welcome-step-body h4 {
+        font-family: "Zen Maru Gothic", sans-serif; font-weight: 700;
+        font-size: 1.05rem; margin: 2px 0 6px; color: var(--accent-strong); line-height: 1.5;
+      }
+      .welcome-step-body p { font-size: 0.94rem; margin: 0 0 8px; }
+      .welcome-step-body p:last-child { margin-bottom: 0; }
+      .welcome-step-body ul { margin: 0 0 6px; padding-left: 1.25em; }
+      .welcome-step-body li { font-size: 0.94rem; margin-bottom: 4px; }
+      .welcome-step-body li:last-child { margin-bottom: 0; }
+      .welcome-arrow { text-align: center; color: var(--accent); font-size: 1.25rem; font-weight: 900; line-height: 1.15; padding: 4px 0; }
+      @media (max-width: 480px) {
+        .welcome-step { padding: 14px 14px; gap: 12px; }
+        .welcome-step-badge { width: 50px; min-height: 50px; }
+        .welcome-step-badge .step-num { font-size: 1.25rem; }
+      }
+
       /* ---------- Genetic disease mechanism ---------- */
       .gene-mech {
         background: var(--surface);
@@ -1341,6 +1375,104 @@
       <section id="life" hidden>
         <h2>暮らしのポイント</h2>
         <p class="section-sub">犬種を問わず大切な暮らしの基本と、大型犬・スタンダードプードルならではのポイントをまとめました。</p>
+
+        <h3 class="care-section-title">犬をお迎えしてからの流れ</h3>
+        <p class="section-sub">犬を迎えた日から、少しずつ新しい暮らしに慣れていくまでの流れを、時系列でまとめました。犬種や年齢、その子の様子によって進み方は変わるため、目安として参考にしてください。</p>
+        <div class="card">
+          <p class="welcome-intro">焦らず、その子のペースに合わせることがいちばん大切です。まずは安心できる場所と、決まった生活リズムを作ってあげましょう。</p>
+          <div class="welcome-steps">
+            <div class="welcome-step">
+              <div class="welcome-step-badge" aria-hidden="true"><span class="step-label">STEP</span><span class="step-num">1</span></div>
+              <div class="welcome-step-body">
+                <h4>お迎え前の準備</h4>
+                <p>迎える前に、暮らしの受け入れ態勢を整えておきます。</p>
+                <ul>
+                  <li><strong>そろえるもの</strong> ― サークルやクレート、寝床、トイレトレーとトイレシート、フードと食器（水用・ごはん用）、首輪やハーネスとリード、おもちゃなど。</li>
+                  <li><strong>住環境を整える</strong> ― 誤って口に入れると危険なもの（小さな物、電気コード、薬品、観葉植物など）は片付け、届かない場所へ。滑りやすい床にはマットを敷く、入ってほしくない場所にはゲートを付けるといった対策も先にしておくと安心です。</li>
+                  <li><strong>落ち着ける場所を決める</strong> ― 人の出入りが激しすぎず、静かに休める場所にサークルと寝床、トイレを置きます。</li>
+                </ul>
+              </div>
+            </div>
+            <div class="welcome-arrow" aria-hidden="true">↓</div>
+            <div class="welcome-step">
+              <div class="welcome-step-badge" aria-hidden="true"><span class="step-label">STEP</span><span class="step-num">2</span></div>
+              <div class="welcome-step-body">
+                <h4>お迎え初日</h4>
+                <p>環境が大きく変わり、緊張しやすい日です。かわいくてつい触りたくなりますが、まずは静かに見守ります。</p>
+                <ul>
+                  <li>家に着いたら、まずトイレのある場所へ連れていき、においを嗅がせて場所を覚えさせます。うまくできたら、その場で優しく褒めます。</li>
+                  <li>サークルや寝床でゆっくり休ませます。家族も代わる代わる抱っこし続けるのではなく、休む時間を大切にします。</li>
+                  <li>食事は、それまでの環境で食べていたものと同じフードを、同じ量で与えるのが基本です。急に変えるとお腹を壊しやすくなります。</li>
+                  <li>水はいつでも飲めるように用意しておきます。</li>
+                </ul>
+              </div>
+            </div>
+            <div class="welcome-arrow" aria-hidden="true">↓</div>
+            <div class="welcome-step">
+              <div class="welcome-step-badge" aria-hidden="true"><span class="step-label">STEP</span><span class="step-num">3</span></div>
+              <div class="welcome-step-body">
+                <h4>最初の数日〜1週間</h4>
+                <p>少しずつ家と家族に慣れていく時期です。</p>
+                <ul>
+                  <li><strong>生活リズムを整える</strong> ― 食事、トイレ、遊び、休む時間をだいたい決まった流れにすると、犬も見通しが持てて落ち着きやすくなります。</li>
+                  <li><strong>体調を観察する</strong> ― 食欲、便の状態、元気の有無を毎日見ておきます。環境の変化で食欲が落ちたり便がゆるくなったりすることもありますが、続くときは早めに相談を。</li>
+                  <li><strong>動物病院で健康チェック</strong> ― 落ち着いたら、かかりつけにしたい動物病院で健康チェックを受けるのがおすすめです。その際、ワクチンの接種歴や今後の予定もあわせて相談しておくと安心です。予防接種や健康管理の考え方は<a href="#" data-goto="health">「病気と健康」タブ</a>にまとめています。</li>
+                </ul>
+              </div>
+            </div>
+            <div class="welcome-arrow" aria-hidden="true">↓</div>
+            <div class="welcome-step">
+              <div class="welcome-step-badge" aria-hidden="true"><span class="step-label">STEP</span><span class="step-num">4</span></div>
+              <div class="welcome-step-body">
+                <h4>手続き</h4>
+                <p>迎えたあとに必要な届け出を確認しておきます。</p>
+                <ul>
+                  <li><strong>犬の登録と狂犬病予防接種</strong> ― 住んでいる自治体への登録と、狂犬病予防注射に関わる手続きがあります。登録をすると鑑札が、注射を受けると注射済票が交付されます。対象となる時期や進め方は<a href="#" data-goto="health">「病気と健康」タブの狂犬病予防の項目</a>で紹介しています。</li>
+                  <li><strong>マイクロチップの情報</strong> ― マイクロチップが入っている場合は、飼い主の情報が正しく登録されているかを確認し、必要に応じて変更の手続きをしておきます。引っ越しなどで連絡先が変わったときも、更新を忘れずに。</li>
+                </ul>
+              </div>
+            </div>
+            <div class="welcome-arrow" aria-hidden="true">↓</div>
+            <div class="welcome-step">
+              <div class="welcome-step-badge" aria-hidden="true"><span class="step-label">STEP</span><span class="step-num">5</span></div>
+              <div class="welcome-step-body">
+                <h4>ワクチンと予防のスタート</h4>
+                <p>子犬の時期は、予防のスケジュールが重なる時期でもあります。</p>
+                <ul>
+                  <li>混合ワクチンの追加接種や、フィラリア予防、ノミ・ダニ予防などは、その子の年齢や接種歴、住んでいる地域によって進め方が変わります。</li>
+                  <li>自己判断で時期を決めず、動物病院で接種歴を確認しながら、獣医師と相談して進めてください。それぞれの予防が大切な理由や仕組みは<a href="#" data-goto="health">「病気と健康」タブ</a>にまとめています。</li>
+                </ul>
+              </div>
+            </div>
+            <div class="welcome-arrow" aria-hidden="true">↓</div>
+            <div class="welcome-step">
+              <div class="welcome-step-badge" aria-hidden="true"><span class="step-label">STEP</span><span class="step-num">6</span></div>
+              <div class="welcome-step-body">
+                <h4>社会化としつけの開始</h4>
+                <p>家での暮らしに慣れてきたら、人や社会に慣れる練習と、基本のしつけを少しずつ始めます。</p>
+                <ul>
+                  <li><strong>社会化</strong> ― 子犬期には、いろいろな人や音、場所、ほかの犬に慣れやすい大切な時期があるとされます。無理のない範囲で、怖がらせないように少しずつ経験を増やしてあげましょう。</li>
+                  <li><strong>基本のしつけ</strong> ― トイレ、名前を呼んだら振り向くこと、「おすわり」など、暮らしに必要なことから少しずつ。うまくできたらその場で褒める進め方が基本です。</li>
+                  <li><strong>散歩デビュー</strong> ― 外を歩く散歩をいつから始めてよいかは、ワクチンの進み具合によって変わります。獣医師に確認してから始めてください。それまでは抱っこやカートで外の空気や音に慣らす方法もあります。</li>
+                </ul>
+              </div>
+            </div>
+            <div class="welcome-arrow" aria-hidden="true">↓</div>
+            <div class="welcome-step">
+              <div class="welcome-step-badge" aria-hidden="true"><span class="step-label">STEP</span><span class="step-num">7</span></div>
+              <div class="welcome-step-body">
+                <h4>数か月後まで ― 成長に合わせた見直し</h4>
+                <p>体も心もぐんと成長する時期です。成長に合わせて、暮らし方も少しずつ見直していきます。</p>
+                <ul>
+                  <li><strong>避妊・去勢の相談</strong> ― するかどうか、時期はいつごろがよいかは、体格や体質によって考え方が分かれます。成長の様子を見ながら、かかりつけの獣医師と相談して決めましょう。</li>
+                  <li><strong>歯の生え変わり</strong> ― 子犬の歯（乳歯）から大人の歯（永久歯）へ生え変わる時期があります。口の中を触られることに慣らしながら、歯みがきの習慣につなげていきます。</li>
+                  <li><strong>フードの切り替え</strong> ― 成長が落ち着く時期に合わせて、子犬用から成犬用フードへの切り替えを検討します。急に変えず、少しずつ混ぜながら移行するのが目安です。切り替える時期は犬種やサイズで違うため、体重や体格の変化を見ながら判断してください。</li>
+                </ul>
+                <p>その先の年齢ごとの暮らし方の変化は、このページ下の「年齢で変わる暮らし」で、子犬期・成犬期・シニア期に分けて紹介しています。</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <h3 class="care-section-title">犬全般の暮らしのポイント</h3>
         <p class="section-sub">どの犬種と暮らす場合でも、基本になることです。サイズや犬種、年齢によって違う部分もあるため、目安として参考にし、その子に合わせて調整してください。</p>
