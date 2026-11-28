@@ -823,6 +823,88 @@
       footer p { color: var(--ink-soft); font-size: 0.9rem; }
       footer .album-link { margin: 10px 0 18px; }
 
+      /* ---------- Back to top ---------- */
+      .back-to-top-before-footer {
+        text-align: center;
+        margin: 36px 0 0;
+      }
+      .back-to-top-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        min-height: 48px;
+        padding: 10px 22px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--accent-strong);
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        -webkit-tap-highlight-color: transparent;
+      }
+      .back-to-top-link:hover { border-color: var(--accent); background: var(--accent-soft); }
+      .back-to-top-link:focus-visible, .back-to-top-float:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+      .back-to-top-float {
+        position: fixed;
+        right: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        z-index: 40;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        min-height: 48px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--accent);
+        background: var(--accent);
+        color: #fff;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 700;
+        line-height: 1.2;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(80, 64, 32, 0.28);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        pointer-events: none;
+        transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      @media (prefers-color-scheme: dark) {
+        .back-to-top-float { color: #241d10; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); }
+      }
+      .back-to-top-float:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+      .back-to-top-float.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      @media (max-width: 480px) {
+        .back-to-top-float {
+          right: 12px;
+          bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+          min-height: 46px;
+          padding: 9px 14px;
+          font-size: 0.88rem;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .back-to-top-float { transition: none; }
+      }
+      @media print {
+        .back-to-top-float, .back-to-top-before-footer { display: none; }
+      }
+
       /* ---------- Lightbox ---------- */
       .lightbox {
         position: fixed; inset: 0;
@@ -2388,6 +2470,10 @@
         </details>
       </section>
 
+      <div class="back-to-top-before-footer">
+        <button type="button" class="back-to-top-link" data-back-to-top>↑ トップへ戻る</button>
+      </div>
+
       <!-- ===== Footer ===== -->
       <footer>
         <p>4頭の毎日のお散歩写真は、こちらのアルバムにまとめています。</p>
@@ -2395,6 +2481,8 @@
         <p>スタンダードプードルと暮らす横浜の4頭 ― カイン・カノン・リノン・ジュノン</p>
       </footer>
     </div>
+
+    <button type="button" class="back-to-top-float" id="back-to-top-float" data-back-to-top aria-hidden="true" tabindex="-1">↑ トップへ戻る</button>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="写真の拡大表示">
@@ -2654,6 +2742,34 @@
             var main = document.getElementById('photo-' + key);
             var cap = document.getElementById('caption-' + key);
             if (main) openLightbox(main.src, main.alt, cap ? cap.textContent : '');
+          });
+        });
+
+        // Back to top: floating button appears after scrolling, both buttons
+        // scroll smoothly to the very top without changing the active tab.
+        var backToTopFloat = document.getElementById('back-to-top-float');
+        var BACK_TO_TOP_THRESHOLD = 600;
+        function updateBackToTopVisibility() {
+          if (!backToTopFloat) return;
+          var show = window.scrollY > BACK_TO_TOP_THRESHOLD;
+          backToTopFloat.classList.toggle('visible', show);
+          backToTopFloat.setAttribute('aria-hidden', show ? 'false' : 'true');
+          backToTopFloat.tabIndex = show ? 0 : -1;
+        }
+        var backToTopTicking = false;
+        window.addEventListener('scroll', function () {
+          if (backToTopTicking) return;
+          backToTopTicking = true;
+          requestAnimationFrame(function () {
+            updateBackToTopVisibility();
+            backToTopTicking = false;
+          });
+        }, { passive: true });
+        updateBackToTopVisibility();
+        document.querySelectorAll('[data-back-to-top]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
           });
         });
       })();
