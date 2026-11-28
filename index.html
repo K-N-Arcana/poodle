@@ -220,6 +220,40 @@
         .subnav a { flex: 1 1 calc(50% - 6px); padding: 8px; font-size: 0.9rem; }
       }
 
+      /* ---------- Accordion (long tabs) ---------- */
+      .accordion-header {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .accordion-header:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+      .accordion-indicator {
+        flex-shrink: 0;
+        width: 38px; height: 38px;
+        display: inline-flex; align-items: center; justify-content: center;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--surface-soft);
+        color: var(--accent-strong);
+        font-size: 0.85rem;
+        font-family: "Noto Sans JP", sans-serif;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .card > h3.accordion-header, .gene-mech > h3.accordion-header { margin-bottom: 2px; }
+      .accordion-panel[hidden] { display: none; }
+      @media print {
+        .accordion-panel[hidden] { display: block !important; }
+        .accordion-indicator { display: none; }
+      }
+
       .care-section-title {
         font-family: "Zen Maru Gothic", sans-serif;
         font-weight: 900;
@@ -2204,7 +2238,7 @@
         <h3 class="care-section-title" id="faq-general">犬全般のよくある質問</h3>
         <p class="section-sub">どの犬種にも共通する、迎える前に考えておきたいことです。数値や程度は犬種やサイズで大きく違うため、ここでは考え方の目安としてまとめ、詳しい内容は各タブへ案内しています。</p>
 
-        <details class="faq">
+        <details class="faq" open>
           <summary>自分に合う犬種・サイズはどう選ぶ？</summary>
           <div class="answer">
             <p>
@@ -2454,6 +2488,138 @@
             });
           });
         });
+        // ----- Accordions for long tabs (care / life / health) -----
+        // Content stays in the DOM; only display is toggled.
+        var accordionCounter = 0;
+        function setPanelState(header, panel, open) {
+          panel.hidden = !open;
+          header.setAttribute('aria-expanded', open ? 'true' : 'false');
+          var ind = header.querySelector('.accordion-indicator');
+          if (ind) ind.textContent = open ? '△' : '▽';
+        }
+        function setupAccordionHeader(header, panel, initiallyOpen) {
+          accordionCounter += 1;
+          if (!panel.id) panel.id = 'accordion-panel-' + accordionCounter;
+          header.classList.add('accordion-header');
+          header.setAttribute('role', 'button');
+          header.setAttribute('tabindex', '0');
+          header.setAttribute('aria-controls', panel.id);
+          var ind = document.createElement('span');
+          ind.className = 'accordion-indicator';
+          ind.setAttribute('aria-hidden', 'true');
+          ind.textContent = initiallyOpen ? '△' : '▽';
+          header.appendChild(ind);
+          header._accordionPanel = panel;
+          panel._accordionHeader = header;
+          setPanelState(header, panel, !!initiallyOpen);
+          function toggle() {
+            setPanelState(header, panel, panel.hidden);
+          }
+          header.addEventListener('click', toggle);
+          header.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggle();
+            }
+          });
+        }
+        function ensureOpenForTarget(target) {
+          if (!target) return;
+          // FAQ: open the containing (or targeted) question
+          if (target.tagName === 'DETAILS') { target.open = true; }
+          else if (target.closest) {
+            var det = target.closest('details.faq');
+            if (det) det.open = true;
+          }
+          if (target.id === 'faq-general') {
+            var firstFaq = document.querySelector('#faq details.faq');
+            if (firstFaq) firstFaq.open = true;
+          }
+          // Target is an accordion header itself (e.g. #care-general, #life-welcome, #life-age)
+          if (target.classList && target.classList.contains('accordion-header') && target._accordionPanel) {
+            setPanelState(target, target._accordionPanel, true);
+            return;
+          }
+          // Target contains a panel (e.g. health cards #health-gene, #health-hospital)
+          if (target.querySelector) {
+            var innerPanels = target.querySelectorAll('.accordion-panel');
+            for (var i = 0; i < innerPanels.length; i++) {
+              if (innerPanels[i]._accordionHeader) {
+                setPanelState(innerPanels[i]._accordionHeader, innerPanels[i], true);
+              }
+            }
+            if (innerPanels.length) return;
+          }
+          // Target sits inside a panel (e.g. #care-cuts, #life-step4, #life-step5)
+          if (target.closest) {
+            var panel = target.closest('.accordion-panel');
+            if (panel && panel._accordionHeader) {
+              setPanelState(panel._accordionHeader, panel, true);
+            }
+          }
+        }
+
+        // Care & Life: group by .care-section-title headings
+        ['care', 'life'].forEach(function (sectionId) {
+          var sec = document.getElementById(sectionId);
+          if (!sec) return;
+          var headers = Array.prototype.slice.call(sec.querySelectorAll(':scope > .care-section-title'));
+          headers.forEach(function (header, idx) {
+            var panel = document.createElement('div');
+            panel.className = 'accordion-panel';
+            var next = header.nextElementSibling;
+            while (next && !(next.classList && next.classList.contains('care-section-title'))) {
+              var cur = next;
+              next = next.nextElementSibling;
+              panel.appendChild(cur);
+            }
+            sec.insertBefore(panel, next);
+            setupAccordionHeader(header, panel, idx === 0);
+          });
+        });
+
+        // Health: group by cards / gene-mech blocks, heading is the inner h3
+        (function () {
+          var healthSec = document.getElementById('health');
+          if (!healthSec) return;
+          var items = Array.prototype.slice.call(
+            healthSec.querySelectorAll(':scope > .gene-mech, :scope > .card')
+          ).filter(function (it) { return it.id && it.id.indexOf('health-') === 0; });
+          items.forEach(function (item, idx) {
+            var h3 = item.querySelector(':scope > h3');
+            if (!h3) return;
+            var panel = document.createElement('div');
+            panel.className = 'accordion-panel';
+            var child = h3.nextElementSibling;
+            while (child) {
+              var curChild = child;
+              child = child.nextElementSibling;
+              panel.appendChild(curChild);
+            }
+            item.appendChild(panel);
+            setupAccordionHeader(h3, panel, idx === 0);
+          });
+        })();
+
+        // FAQ: first question open, the rest closed (details elements are native accordions)
+        (function () {
+          var faqs = document.querySelectorAll('#faq details.faq');
+          faqs.forEach(function (d, i) { d.open = (i === 0); });
+        })();
+
+        // Health sub-navigation: open the target section, then scroll
+        document.querySelectorAll('.subnav a[href^="#"]').forEach(function (a) {
+          a.addEventListener('click', function (e) {
+            var target = document.getElementById(a.getAttribute('href').slice(1));
+            if (!target) return;
+            e.preventDefault();
+            ensureOpenForTarget(target);
+            setTimeout(function () {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 40);
+          });
+        });
+
         document.querySelectorAll('[data-goto]').forEach(function (link) {
           link.addEventListener('click', function (e) {
             e.preventDefault();
@@ -2465,7 +2631,11 @@
                 setTimeout(function () {
                   var target = document.getElementById(anchorId);
                   if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    ensureOpenForTarget(target);
+                    // Opening a panel changes layout, so scroll after opening
+                    setTimeout(function () {
+                      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 30);
                   } else {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }
