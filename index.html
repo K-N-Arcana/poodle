@@ -156,6 +156,54 @@
         .tabs button { flex: 1 1 calc(50% - 6px); padding: 10px 8px; font-size: 0.92rem; }
       }
 
+      /* ---------- Trouble index (困りごとから探す) ---------- */
+      .trouble {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 20px 22px 10px;
+        margin: 20px 0 4px;
+        text-align: left;
+      }
+      .trouble-title {
+        font-family: "Zen Maru Gothic", sans-serif;
+        font-weight: 900;
+        font-size: 1.3rem;
+        line-height: 1.4;
+        margin: 0 0 4px;
+        padding-left: 12px;
+        border-left: 6px solid var(--pink);
+      }
+      .trouble-lead { color: var(--ink-soft); font-size: 0.93rem; margin: 0 0 6px; }
+      .trouble-group { padding: 10px 0 8px; border-top: 1px dashed var(--line); }
+      .trouble-group:first-of-type { border-top: none; }
+      .trouble-group-title {
+        font-family: "Zen Maru Gothic", sans-serif;
+        font-weight: 700;
+        font-size: 0.98rem;
+        color: var(--accent-strong);
+        margin: 0 0 8px;
+      }
+      .trouble-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+      .trouble-chip {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 44px; padding: 8px 16px; border-radius: 999px;
+        border: 1px solid var(--line); background: var(--surface-soft); color: var(--ink);
+        font-size: 0.92rem; font-weight: 500; text-decoration: none; line-height: 1.4;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .trouble-chip:hover { border-color: var(--accent); background: var(--accent-soft); color: var(--accent-strong); }
+      .trouble-chip::after { content: "›"; margin-left: 6px; color: var(--accent); font-weight: 700; }
+      @media (max-width: 480px) {
+        .trouble { padding: 16px 16px 6px; }
+        .trouble-chip { font-size: 0.9rem; padding: 8px 14px; }
+      }
+      #health-gene, #health-breeds, #health-filaria, #health-vet, #health-hospital,
+      #care-general, #care-cuts, #life-welcome, #life-step4, #life-step5, #life-age, #faq-general {
+        scroll-margin-top: 16px;
+      }
+
       /* ---------- Sub navigation (in-tab index) ---------- */
       .subnav {
         display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 22px;
@@ -786,6 +834,58 @@
         </figure>
       </header>
 
+      <!-- ===== Trouble index ===== -->
+      <div class="trouble" aria-label="困りごとから探す">
+        <h2 class="trouble-title">困りごとから探す</h2>
+        <p class="trouble-lead">困ったときは、ここから探せます。気になる言葉をタップすると、該当する内容へ移動します。</p>
+
+        <div class="trouble-group">
+          <h3 class="trouble-group-title">体調・症状</h3>
+          <div class="trouble-chips">
+            <a class="trouble-chip" href="#" data-goto="health" data-anchor="health-hospital">食欲がない・吐く・下痢</a>
+            <a class="trouble-chip" href="#" data-goto="health" data-anchor="health-hospital">誤飲・誤食した</a>
+            <a class="trouble-chip" href="#" data-goto="health" data-anchor="health-hospital">咳をする</a>
+            <a class="trouble-chip" href="#" data-goto="health" data-anchor="health-hospital">歩き方がおかしい</a>
+            <a class="trouble-chip" href="#" data-goto="health" data-anchor="health-hospital">目や耳の様子がおかしい</a>
+            <a class="trouble-chip" href="#" data-goto="health" data-anchor="health-hospital">体重が急に変わった</a>
+            <a class="trouble-chip" href="#" data-goto="health" data-anchor="health-gene">遺伝病が心配</a>
+            <a class="trouble-chip" href="#" data-goto="about">犬種ごとの病気を知りたい</a>
+          </div>
+        </div>
+
+        <div class="trouble-group">
+          <h3 class="trouble-group-title">予防・手続き</h3>
+          <div class="trouble-chips">
+            <a class="trouble-chip" href="#" data-goto="life" data-anchor="life-step5">子犬のワクチンが複数回なのはなぜ</a>
+            <a class="trouble-chip" href="#" data-goto="health" data-anchor="health-filaria">フィラリア予防について</a>
+            <a class="trouble-chip" href="#" data-goto="health" data-anchor="health-vet">狂犬病の予防接種</a>
+            <a class="trouble-chip" href="#" data-goto="life" data-anchor="life-step4">マイクロチップの手続き</a>
+          </div>
+        </div>
+
+        <div class="trouble-group">
+          <h3 class="trouble-group-title">暮らし・しつけ</h3>
+          <div class="trouble-chips">
+            <a class="trouble-chip" href="#" data-goto="life" data-anchor="life-welcome">犬を迎えたばかり</a>
+            <a class="trouble-chip" href="#" data-goto="faq" data-anchor="faq-general">留守番が心配</a>
+            <a class="trouble-chip" href="#" data-goto="faq" data-anchor="faq-general">子どもとの相性</a>
+            <a class="trouble-chip" href="#" data-goto="faq" data-anchor="faq-general">マンションで飼える？</a>
+            <a class="trouble-chip" href="#" data-goto="life" data-anchor="life-age">高齢になってきた</a>
+            <a class="trouble-chip" href="#" data-goto="about">どの犬種が合う？</a>
+          </div>
+        </div>
+
+        <div class="trouble-group">
+          <h3 class="trouble-group-title">お手入れ</h3>
+          <div class="trouble-chips">
+            <a class="trouble-chip" href="#" data-goto="care" data-anchor="care-general">抜け毛が多い</a>
+            <a class="trouble-chip" href="#" data-goto="care" data-anchor="care-general">シャンプーの頻度</a>
+            <a class="trouble-chip" href="#" data-goto="care" data-anchor="care-general">爪切り・耳掃除・歯みがき</a>
+            <a class="trouble-chip" href="#" data-goto="care" data-anchor="care-cuts">プードルのカット例が見たい</a>
+          </div>
+        </div>
+      </div>
+
       <nav class="tabs" aria-label="ページ切り替え">
         <button type="button" class="active" data-page="about" aria-current="page">犬種図鑑</button>
         <button type="button" data-page="care">お手入れ</button>
@@ -1228,7 +1328,7 @@
         <h2>お手入れ</h2>
         <p class="section-sub">犬種を問わず大切な基本のお手入れと、スタンダードプードルならではの巻き毛のお手入れをまとめました。</p>
 
-        <h3 class="care-section-title">犬全般のお手入れ</h3>
+        <h3 class="care-section-title" id="care-general">犬全般のお手入れ</h3>
         <p class="section-sub">どの犬種と暮らす場合でも、基本になるお手入れです。頻度や方法は毛質や体質、年齢によって変わるため、目安として参考にし、その子に合わせて調整してください。</p>
         <div class="card">
           <h4>シングルコートとダブルコート</h4>
@@ -1278,7 +1378,7 @@
           <p class="small">抜け毛が少ないので、掃除の手間や服への付着は比較的少なく済むといわれています。ただし「手入れが要らない」という意味ではありません。</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="care-cuts">
           <h3>カットスタイルのイメージ</h3>
           <p>プードルはカットのスタイルで印象ががらりと変わります。代表的なスタイルのイメージです。</p>
           <div class="cuts">
@@ -1376,7 +1476,7 @@
         <h2>暮らしのポイント</h2>
         <p class="section-sub">犬種を問わず大切な暮らしの基本と、大型犬・スタンダードプードルならではのポイントをまとめました。</p>
 
-        <h3 class="care-section-title">犬をお迎えしてからの流れ</h3>
+        <h3 class="care-section-title" id="life-welcome">犬をお迎えしてからの流れ</h3>
         <p class="section-sub">犬を迎えた日から、少しずつ新しい暮らしに慣れていくまでの流れを、時系列でまとめました。犬種や年齢、その子の様子によって進み方は変わるため、目安として参考にしてください。</p>
         <div class="card">
           <p class="welcome-intro">焦らず、その子のペースに合わせることがいちばん大切です。まずは安心できる場所と、決まった生活リズムを作ってあげましょう。</p>
@@ -1421,7 +1521,7 @@
               </div>
             </div>
             <div class="welcome-arrow" aria-hidden="true">↓</div>
-            <div class="welcome-step">
+            <div class="welcome-step" id="life-step4">
               <div class="welcome-step-badge" aria-hidden="true"><span class="step-label">STEP</span><span class="step-num">4</span></div>
               <div class="welcome-step-body">
                 <h4>手続き</h4>
@@ -1433,7 +1533,7 @@
               </div>
             </div>
             <div class="welcome-arrow" aria-hidden="true">↓</div>
-            <div class="welcome-step">
+            <div class="welcome-step" id="life-step5">
               <div class="welcome-step-badge" aria-hidden="true"><span class="step-label">STEP</span><span class="step-num">5</span></div>
               <div class="welcome-step-body">
                 <h4>ワクチンと予防のスタート</h4>
@@ -1488,7 +1588,7 @@
           </ul>
         </div>
 
-        <h3 class="care-section-title">年齢で変わる暮らし</h3>
+        <h3 class="care-section-title" id="life-age">年齢で変わる暮らし</h3>
         <p class="section-sub">犬の年齢の進み方は体のサイズで違うとされ、大型犬は小型犬よりシニア期に入るのが早い目安といわれます。ここで挙げる「〜歳ごろ」はあくまで目安で、その子の体調や様子に合わせて考えてください。</p>
 
         <div class="card">
@@ -2101,7 +2201,7 @@
         <h2>よくある質問</h2>
         <p class="section-sub">犬との暮らしを検討している方から、よく聞かれることをまとめました。まずは犬全般の質問から、そのあとにスタンダードプードルに絞った質問を続けます。</p>
 
-        <h3 class="care-section-title">犬全般のよくある質問</h3>
+        <h3 class="care-section-title" id="faq-general">犬全般のよくある質問</h3>
         <p class="section-sub">どの犬種にも共通する、迎える前に考えておきたいことです。数値や程度は犬種やサイズで大きく違うため、ここでは考え方の目安としてまとめ、詳しい内容は各タブへ案内しています。</p>
 
         <details class="faq">
@@ -2357,8 +2457,23 @@
         document.querySelectorAll('[data-goto]').forEach(function (link) {
           link.addEventListener('click', function (e) {
             e.preventDefault();
-            showPage(link.getAttribute('data-goto'));
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            var pageKey = link.getAttribute('data-goto');
+            var anchorId = link.getAttribute('data-anchor');
+            showPage(pageKey);
+            if (anchorId) {
+              requestAnimationFrame(function () {
+                setTimeout(function () {
+                  var target = document.getElementById(anchorId);
+                  if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }, 40);
+              });
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
           });
         });
 
